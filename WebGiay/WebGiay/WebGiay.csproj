@@ -46,6 +46,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -126,6 +132,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BUS\ShopOnlineBUS.cs" />
+    <Compile Include="Models\Generated\Database.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Database.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PetaPoco.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -166,22 +179,22 @@
     <Content Include="Asset\images\img_bg_1.jpg" />
     <Content Include="Asset\images\img_bg_2.jpg" />
     <Content Include="Asset\images\img_bg_3.jpg" />
-    <Content Include="Asset\images\item-1.jpg" />
-    <Content Include="Asset\images\item-10.jpg" />
-    <Content Include="Asset\images\item-11.jpg" />
-    <Content Include="Asset\images\item-12.jpg" />
-    <Content Include="Asset\images\item-13.jpg" />
-    <Content Include="Asset\images\item-14.jpg" />
-    <Content Include="Asset\images\item-15.jpg" />
-    <Content Include="Asset\images\item-16.jpg" />
-    <Content Include="Asset\images\item-2.jpg" />
-    <Content Include="Asset\images\item-3.jpg" />
-    <Content Include="Asset\images\item-4.jpg" />
-    <Content Include="Asset\images\item-5.jpg" />
-    <Content Include="Asset\images\item-6.jpg" />
-    <Content Include="Asset\images\item-7.jpg" />
-    <Content Include="Asset\images\item-8.jpg" />
-    <Content Include="Asset\images\item-9.jpg" />
+    <Content Include="Asset\images\1.jpg" />
+    <Content Include="Asset\images\10.jpg" />
+    <Content Include="Asset\images\11.jpg" />
+    <Content Include="Asset\images\12.jpg" />
+    <Content Include="Asset\images\13.jpg" />
+    <Content Include="Asset\images\14.jpg" />
+    <Content Include="Asset\images\15.jpg" />
+    <Content Include="Asset\images\16.jpg" />
+    <Content Include="Asset\images\2.jpg" />
+    <Content Include="Asset\images\3.jpg" />
+    <Content Include="Asset\images\4.jpg" />
+    <Content Include="Asset\images\5.jpg" />
+    <Content Include="Asset\images\6.jpg" />
+    <Content Include="Asset\images\7.jpg" />
+    <Content Include="Asset\images\8.jpg" />
+    <Content Include="Asset\images\9.jpg" />
     <Content Include="Asset\images\loader.gif" />
     <Content Include="Asset\images\loc.png" />
     <Content Include="Asset\images\men.jpg" />
@@ -212,10 +225,15 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\Generated\Database.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Database.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Asset\.sass-cache\060b528537134f2f9508a1cf1546b6a2908e8035\_alerts.scssc" />
@@ -1242,6 +1260,8 @@
     <Content Include="Asset\sass\bootstrap\_utilities.scss" />
     <Content Include="Asset\sass\bootstrap\_variables.scss" />
     <Content Include="Asset\sass\style.scss" />
+    <Content Include="Models\Generated\PetaPoco.Generator.ttinclude" />
+    <Content Include="Models\Generated\PetaPoco.Core.ttinclude" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1268,15 +1288,13 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_MainLayout.cshtml" />
-    <Content Include="Views\Shop\Index.cshtml" />
-    <Content Include="Views\Shop\Details.cshtml" />
     <Content Include="Views\Men\Index.cshtml" />
     <Content Include="Views\Men\Details.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Shop\Index.cshtml" />
+    <Content Include="Views\Shop\Details.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1289,6 +1307,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
