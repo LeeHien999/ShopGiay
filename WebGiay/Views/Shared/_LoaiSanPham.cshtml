@@ -1,0 +1,7 @@
+﻿@model IEnumerable<ShopOnlineConnection.LoaiSanPham>
+
+@foreach (var item in Model)
+{
+    <li><a href="@Url.Action("index", "LoaiSanPham", new {id = item.MaLoaiSanPham})">@item.TenLoaiSanPham</a></li>
+}
+
