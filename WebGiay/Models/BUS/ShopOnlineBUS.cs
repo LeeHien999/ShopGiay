@@ -19,5 +19,16 @@ namespace WebGiay.Models.BUS
             var db = new ShopOnlineConnectionDB();
             return db.SingleOrDefault<SanPham> ("Select * from SanPham where MaSanPham = @0", a);
         }
+        public static IEnumerable<SanPham> Top4New()
+        {
+            var db = new ShopOnlineConnectionDB();
+            return db.Query<SanPham>("Select Top 4 * from SanPham where GhiChu = N'New'");
+        }
+
+        public static IEnumerable<SanPham> BestSeller()
+        {
+            var db = new ShopOnlineConnectionDB();
+            return db.Query<SanPham>("Select Top 8 * from SanPham where LuotView >0");
+        }
     }
 }

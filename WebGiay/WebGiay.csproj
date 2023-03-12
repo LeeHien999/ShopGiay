@@ -1300,6 +1300,8 @@
     <Content Include="Views\NhaSanXuat\Index.cshtml" />
     <Content Include="Views\Shared\_LoaiSanPham.cshtml" />
     <Content Include="Views\LoaiSanPham\Index.cshtml" />
+    <Content Include="Views\Shared\_BestSeller.cshtml" />
+    <Content Include="Views\Shared\_Top4New.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

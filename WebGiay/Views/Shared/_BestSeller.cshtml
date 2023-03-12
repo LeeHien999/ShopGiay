@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ShopOnlineConnection.SanPham>
+<div class="colorlib-product">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2 text-center colorlib-heading">
+                <h2>Best Seller</h2>
+            </div>
+        </div>
+        <div class="row row-pb-md">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 mb-4 text-center">
+                    <div class="product-entry border">
+                        <a href="@Url.Action("Details", new { id = @item.MaSanPham })" class="prod-img">
+                            <img src="/Asset/images/@item.HinhChinh" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                        </a>
+                        <div class="desc">
+                            <h2><a href="@Url.Action("Details", new { id = @item.MaSanPham })">@item.TenSanPham</a></h2>
+                            <span class="price">@item.Gia VNĐ</span>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="w-100"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <p><a href="@Url.Action("Index", "Shop", "Shop")" class="btn btn-primary btn-lg">Shop All Products</a></p>
+            </div>
+        </div>
+    </div>
+</div>
