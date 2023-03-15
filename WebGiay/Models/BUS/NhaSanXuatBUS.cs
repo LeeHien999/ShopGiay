@@ -19,5 +19,11 @@ namespace WebGiay.Models.BUS
             var db = new ShopOnlineConnectionDB();
             return db.Query<SanPham>("Select * from SanPham where MaNhaSanXuat = '" + id +"'");
         }
+
+        public static void ThemNSX (NhaSanXuat nsx)
+        {
+            var db = new ShopOnlineConnectionDB();
+            db.Insert(nsx);
+        }
     }
 }
