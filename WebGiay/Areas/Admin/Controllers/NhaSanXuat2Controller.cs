@@ -13,7 +13,7 @@ namespace WebGiay.Areas.Admin.Controllers
         // GET: Admin/NhaSanXuat2
         public ActionResult Index()
         {
-            var ds = NhaSanXuatBUS.DanhSach();
+            var ds = NhaSanXuatBUS.DanhSachAdmin();
             return View(ds);
         }
 
@@ -46,19 +46,19 @@ namespace WebGiay.Areas.Admin.Controllers
         }
 
         // GET: Admin/NhaSanXuat2/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(String id)
         {
-            return View();
+            return View(NhaSanXuatBUS.ChiTietAdmin(id));
         }
 
         // POST: Admin/NhaSanXuat2/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(String id, NhaSanXuat nsx)
         {
             try
             {
                 // TODO: Add update logic here
-
+                NhaSanXuatBUS.UpdateNSX(id, nsx);
                 return RedirectToAction("Index");
             }
             catch
@@ -68,6 +68,27 @@ namespace WebGiay.Areas.Admin.Controllers
         }
 
         // GET: Admin/NhaSanXuat2/Delete/5
+        public ActionResult XoaTamThoi(String id)
+        {
+            return View(NhaSanXuatBUS.ChiTietAdmin(id));
+        }
+
+        [HttpPost]
+        public ActionResult XoaTamThoi(String id, NhaSanXuat nsx)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+                nsx.TinhTrang = "1";
+                NhaSanXuatBUS.UpdateNSX(id, nsx);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
         public ActionResult Delete(int id)
         {
             return View();

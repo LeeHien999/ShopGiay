@@ -1,0 +1,46 @@
+﻿@model ShopOnlineConnection.NhaSanXuat
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_MainAdminLayout.cshtml";
+}
+
+<style>
+    .container {
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+    }
+</style>
+
+<div class="container">
+    <h2>Chỉnh sửa nhà sản xuất</h2>
+    @using (Html.BeginForm("Edit", "NhaSanXuat2", FormMethod.Post))
+    {
+        <div class="form-group">
+            <label for="ma-nsx">Mã nhà sản xuất:</label>
+            <input type="text" class="form-control" id="ma-nsx" placeholder="Nhập mã nhà sản xuất" name="MaNhaSanXuat" required value="@Model.MaNhaSanXuat" readonly>
+        </div>
+        <div class="form-group">
+            <label for="ten-nsx">Tên nhà sản xuất:</label>
+            <input type="text" class="form-control" id="ten-nsx" placeholder="Nhập tên nhà sản xuất" name="TenNhaSanXuat" required value="@Model.TenNhaSanXuat">
+        </div>
+        <div class="form-group">
+            <label for="tinh-trang">Tình trạng:</label>
+            <select class="form-control" id="tinh-trang" name="TinhTrang" required>
+                @if (int.Parse(Model.TinhTrang) == 1)
+                {
+                    <option value="0">Mở khóa</option>
+                    <option value="1" selected>Khóa</option>
+                }
+                else
+                {
+                    <option value="0" selected>Mở khóa</option>
+                    <option value="1">Khóa</option>
+                }
+
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Lưu</button>
+    }
+</div>
+

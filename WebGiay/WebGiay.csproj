@@ -3133,6 +3133,8 @@
     <Content Include="Areas\Admin\Views\LoaiSanPham2\Index.cshtml" />
     <Content Include="Areas\Admin\Views\LoaiSanPham2\Create.cshtml" />
     <Content Include="Areas\Admin\Views\NhaSanXuat2\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaSanXuat2\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\NhaSanXuat2\XoaTamThoi.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
