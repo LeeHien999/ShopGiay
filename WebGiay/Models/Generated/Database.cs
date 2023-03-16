@@ -163,7 +163,7 @@ namespace ShopOnlineConnection
 
 
 
-		[Column("Tinh trang")] public string Tinh_trang { get; set; }
+		[Column("TinhTrang")] public string TinhTrang { get; set; }
 
 
 

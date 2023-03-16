@@ -4,5 +4,36 @@
     Layout = "~/Areas/Admin/Views/Shared/_MainAdminLayout.cshtml";
 }
 
-<h2>Create</h2>
+<style>
+    .container {
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+    }
+</style>
+
+<div class="container">
+    <h2>Thêm Loại Sản phẩm</h2>
+    @using (Html.BeginForm("Create", "LoaiSanPham2", FormMethod.Post))
+    {
+        <div class="form-group">
+            <label for="ma-nsx">Mã loại sản phẩm:</label>
+            <input type="text" class="form-control" id="ma-nsx" placeholder="Nhập tên loại sản phẩm" name="MaLoaiSanPham" required>
+        </div>
+        <div class="form-group">
+            <label for="ten-nsx">Tên loại sản phẩm:</label>
+            <input type="text" class="form-control" id="ten-nsx" placeholder="Nhập tên loại sản phẩm" name="TenLoaiSanPham" required>
+        </div>
+        <div class="form-group">
+            <label for="tinh-trang">Tình trạng:</label>
+            <select class="form-control" id="tinh-trang" name="TinhTrang" required>
+                <option value="0">Mở khóa</option>
+                <option value="1">Khóa</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Thêm</button>
+    }
+</div>
+
+
 
