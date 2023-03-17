@@ -163,7 +163,7 @@ namespace ShopOnlineConnection
 
 
 
-		[Column("TinhTrang")] public string TinhTrang { get; set; }
+		[Column] public string TinhTrang { get; set; }
 
 
 
@@ -244,12 +244,6 @@ namespace ShopOnlineConnection
 
 
 		[Column] public string CauHinh { get; set; }
-
-
-
-
-
-		[Column] public string Phai { get; set; }
 
 
 

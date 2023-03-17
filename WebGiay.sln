@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.33026.149
+VisualStudioVersion = 15.0.33423.255
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGiay", "WebGiay\WebGiay.csproj", "{DE1FF714-D0FA-4A7A-8B8D-9EAD8FE9F038}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGiay", "WebGiay\WebGiay.csproj", "{E9ABA774-CFCC-49CB-AF5B-030737A36A09}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DE1FF714-D0FA-4A7A-8B8D-9EAD8FE9F038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE1FF714-D0FA-4A7A-8B8D-9EAD8FE9F038}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DE1FF714-D0FA-4A7A-8B8D-9EAD8FE9F038}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DE1FF714-D0FA-4A7A-8B8D-9EAD8FE9F038}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9ABA774-CFCC-49CB-AF5B-030737A36A09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9ABA774-CFCC-49CB-AF5B-030737A36A09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9ABA774-CFCC-49CB-AF5B-030737A36A09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9ABA774-CFCC-49CB-AF5B-030737A36A09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {6094C818-8A70-4217-A5C5-B3F584E38771}
+		SolutionGuid = {51E7DA95-0F96-4F3D-AC0A-E70B52189577}
 	EndGlobalSection
 EndGlobal

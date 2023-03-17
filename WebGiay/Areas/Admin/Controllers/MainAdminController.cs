@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace WebGiay.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class MainAdminController : Controller
     {
         // GET: Admin/MainAdmin

@@ -6,8 +6,10 @@ using System.Web.Mvc;
 
 namespace WebGiay.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class SanPham2Controller : Controller
     {
+
         // GET: Admin/SanPham2
         public ActionResult Index()
         {

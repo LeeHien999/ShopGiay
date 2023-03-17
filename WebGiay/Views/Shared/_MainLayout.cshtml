@@ -52,10 +52,7 @@
                                 <li class="has-dropdown">
                                     <a href="#">My Account<i class="icon-user"></i></a>
                                     <ul class="dropdown">
-                                        <li><a href="#">Login</a></li>
-                                        <li><a href="#">Register</a></li>
-                                        <li><a href="#">My Orders</a></li>
-                                        <li><a href="#">Wishlist</a></li>
+                                        @Html.Partial("_LoginPartial")
                                     </ul>
                                 </li>
                                 <li class="cart"><a href="cart.html"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
@@ -89,6 +86,7 @@
         </nav>
         @RenderBody()
         @{Html.RenderPartial("_Footer");}
+        @RenderSection("scripts", required: false)
     </div>
     <div class="gototop js-top">
         <a href="#" class="js-gotop"><i class="ion-ios-arrow-up"></i></a>
