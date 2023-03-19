@@ -13,8 +13,15 @@ namespace WebGiay.Controllers
         // GET: LoaiSanPham
         public ActionResult Index(String id, int page = 1, int pagesize = 8)
         {
-            var ds = LoaiSanPhamBUS.ChiTiet(id).ToPagedList(page, pagesize); ;
+            var ds = LoaiSanPhamBUS.ChiTiet(id).ToPagedList(page, pagesize);
+
+            //---Lay them ten loai sp de get len view
+            var thongTinLoaiSanPham = LoaiSanPhamBUS.LayThongTinLoaiSanPham(id);
+            ViewBag.TenLoaiSanPham = thongTinLoaiSanPham.TenLoaiSanPham;
+            //----------------------------------------
+
             return View(ds);
+
         }
     }
 }

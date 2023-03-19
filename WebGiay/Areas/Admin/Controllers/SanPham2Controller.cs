@@ -1,19 +1,22 @@
-﻿using System;
+﻿using ShopOnlineConnection;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebGiay.Models.BUS;
 
 namespace WebGiay.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
     public class SanPham2Controller : Controller
     {
-
+        [Authorize(Roles = "Admin")]
         // GET: Admin/SanPham2
         public ActionResult Index()
         {
-            return View();
+            return View(ShopOnlineBUS.DanhSachSP());
         }
 
         // GET: Admin/SanPham2/Details/5
@@ -25,15 +28,19 @@ namespace WebGiay.Areas.Admin.Controllers
         // GET: Admin/SanPham2/Create
         public ActionResult Create()
         {
+            ViewBag.MaNhaSanXuat = new SelectList(NhaSanXuatBUS.DanhSach(), "MaNhaSanXuat", "TenNhaSanXuat");
+            ViewBag.MaLoaiSanPham = new SelectList(LoaiSanPhamBUS.DanhSach(), "MaLoaiSanPham", "TenLoaiSanPham");
             return View();
         }
 
         // POST: Admin/SanPham2/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateInput(false)]
+        public ActionResult Create(SanPham sp)
         {
             try
-            {
+            {               
+                ShopOnlineBUS.InsertSP(sp);
                 // TODO: Add insert logic here
 
                 return RedirectToAction("Index");

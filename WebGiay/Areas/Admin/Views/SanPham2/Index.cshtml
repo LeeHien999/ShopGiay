@@ -1,8 +1,124 @@
-﻿
+﻿@model IEnumerable<ShopOnlineConnection.SanPham>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_MainAdminLayout.cshtml";
 }
+<head>
+    <style>
+        .table-container {
+            margin: 0 auto;
+            width: 80%;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+        }
 
-<h2>Index</h2>
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+            .product-table th,
+            .product-table td {
+                padding: 10px;
+                text-align: left;
+            }
+
+                .product-table th:last-child,
+                .product-table td:last-child {
+                    text-align: center;
+                }
+
+                .product-table th:first-child,
+                .product-table td:first-child {
+                    width: 10%;
+                }
+
+                .product-table th:nth-child(2),
+                .product-table td:nth-child(2) {
+                    width: 50%;
+                }
+
+                .product-table th:nth-child(3),
+                .product-table td:nth-child(3) {
+                    width: 20%;
+                }
+
+                .product-table th:last-child,
+                .product-table td:last-child {
+                    width: 20%;
+                }
+
+        .edit-btn,
+        .delete-btn {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+            .edit-btn i,
+            .delete-btn i {
+                color: #0066CC;
+                font-size: 16px;
+            }
+
+        .add-product {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+            .add-product a {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #0066CC;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 5px;
+            }
+        .product-table td:nth-child(4) {
+            max-width: 150px;
+            max-height: 150px;
+            overflow: hidden;
+        }
+
+            .product-table td:nth-child(4) img {
+                max-width: 100%;
+                height: auto;
+            }
+
+    </style>
+</head>
+
+<div class="table-container">
+    <h2>Quản lý sản phẩm</h2>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Mã SP</th>
+                <th>Tên sản phẩm</th>
+                <th>Tình trạng</th>
+                <th style="width: 13%">Ảnh sản phẩm</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MaSanPham</td>
+                    <td>@item.TenSanPham</td>
+                    <td>@item.TinhTrang</td>
+                    <td><img src="/Asset/images/@item.HinhChinh" alt="@item.TenSanPham"/></td>
+                    <td>
+                        <a href="@Url.Action("Edit","SanPham2",new {id = @item.MaSanPham})" class="edit-btn"><i class="fas fa-edit"></i></a>
+                        <a href="@Url.Action("XoaTamThoi","SanPham2",new {id = @item.MaSanPham})" class="delete-btn"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>   
+    <div class="add-product">
+        <a href="@Url.Action("Create", "SanPham2")"><i class="fas fa-plus"></i> Add</a>
+    </div>
+</div>
 

@@ -56,5 +56,13 @@ namespace WebGiay.Models.BUS
 
         }
 
+
+        //---------- Lay them ten loai san pham de get len view loaisanpham-------------
+        public static LoaiSanPham LayThongTinLoaiSanPham(String id)
+        {
+            var db = new ShopOnlineConnectionDB();
+            return db.SingleOrDefault<LoaiSanPham>("Select * from LoaiSanPham where MaLoaiSanPham = " + id + "");
+        }
+
     }
 }

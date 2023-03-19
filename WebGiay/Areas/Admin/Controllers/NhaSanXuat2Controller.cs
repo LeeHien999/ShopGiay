@@ -8,10 +8,10 @@ using WebGiay.Models.BUS;
 
 namespace WebGiay.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
     public class NhaSanXuat2Controller : Controller
     {
-
+        [Authorize(Roles = "Admin")]
         // GET: Admin/NhaSanXuat2
         public ActionResult Index()
         {

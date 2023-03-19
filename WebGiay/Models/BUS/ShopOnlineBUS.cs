@@ -30,5 +30,20 @@ namespace WebGiay.Models.BUS
             var db = new ShopOnlineConnectionDB();
             return db.Query<SanPham>("Select Top 8 * from SanPham where LuotView >0");
         }
+
+
+
+        //---------------------------Admin---------------------
+        public static IEnumerable<SanPham> DanhSachSP()
+        {
+            var db = new ShopOnlineConnectionDB();
+            return db.Query<SanPham>("Select * from SanPham");
+        }
+
+        public static void InsertSP(SanPham sp)
+        {
+            var db = new ShopOnlineConnectionDB();
+            db.Insert(sp);
+        }
     }
 }

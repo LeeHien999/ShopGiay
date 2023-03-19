@@ -50,9 +50,27 @@
                                 <li><a href="about.html">About</a></li>
                                 <li><a href="contact.html">Contact</a></li>
                                 <li class="has-dropdown">
-                                    <a href="#">My Account<i class="icon-user"></i></a>
+
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        String UserName = User.Identity.Name.Split('@')[0];
+                                        <a href="#">@UserName<i class="icon-user"></i></a>
+
+                                    }
+                                    else
+                                    {
+                                        <a href="#">My Account<i class="icon-user"></i></a>
+                                    }
                                     <ul class="dropdown">
-                                        @Html.Partial("_LoginPartial")
+                                        <li>
+                                            @Html.Partial("_LoginPartial")
+                                        </li>
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <li>
+                                                <a href="@Url.Action("Index", "MainAdmin", new { area = "Admin" })">Admin SB</a>
+                                            </li>
+                                        }
                                     </ul>
                                 </li>
                                 <li class="cart"><a href="cart.html"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
@@ -91,7 +109,7 @@
     <div class="gototop js-top">
         <a href="#" class="js-gotop"><i class="ion-ios-arrow-up"></i></a>
     </div>
-
+    
     <!-- jQuery -->
     <script src="/Asset/js/jquery.min.js"></script>
     <!-- popper -->
@@ -115,6 +133,7 @@
     <script src="/Asset/js/jquery.stellar.min.js"></script>
     <!-- Main -->
     <script src="/Asset/js/main.js"></script>
+
 </body>
 </html>
 
