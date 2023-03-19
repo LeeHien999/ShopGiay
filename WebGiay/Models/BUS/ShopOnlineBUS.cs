@@ -45,5 +45,11 @@ namespace WebGiay.Models.BUS
             var db = new ShopOnlineConnectionDB();
             db.Insert(sp);
         }
+
+        public static void UpdateSP(String id, SanPham sp)
+        {
+            var db = new ShopOnlineConnectionDB();
+            db.Update(sp, id);
+        }
     }
 }

@@ -3265,6 +3265,7 @@
     <Content Include="Areas\AssetAdmin\ckeditor5-build-classic\ckeditor.js.map" />
     <Content Include="Areas\AssetAdmin\ckeditor5-build-classic\LICENSE.md" />
     <Content Include="Areas\AssetAdmin\ckeditor5-build-classic\README.md" />
+    <Content Include="Areas\Admin\Views\SanPham2\Edit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

@@ -7,84 +7,120 @@
 <head>
     <style>
         .table-container {
-            margin: 0 auto;
-            width: 80%;
-            border: 1px solid #ccc;
-            padding: 20px;
-            border-radius: 5px;
+  margin: 20px auto;
+  max-width: 800px;
+  text-align: center;
+}
+
+.product-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.product-table th,
+.product-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.product-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.product-table td img {
+  max-width: 100%;
+}
+
+.edit-btn,
+.delete-btn {
+  color: #666;
+  display: inline-block;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  color: #000;
+}
+
+.add-product {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.add-product a {
+  background-color: #007bff;
+  border-radius: 4px;
+  color: #fff;
+  display: inline-block;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.add-product a:hover {
+  background-color: #0069d9;
+}
+
+    (max-width: 768px) {
+  .product-table td,
+  .product-table th {
+    display: block;
+    text-align: center;
+  }
+
+  .product-table td:first-child {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  .product-table td:nth-child(2)::before {
+    content: "Tên sản phẩm: ";
+    font-weight: bold;
+  }
+
+  .product-table td:nth-child(3)::before {
+    content: "Giá: ";
+    font-weight: bold;
+  }
+
+  .product-table td:nth-child(4)::before {
+    content: "Tình trạng: ";
+    font-weight: bold;
+  }
+
+  .product-table td:nth-child(5)::before {
+    content: "Ảnh sản phẩm: ";
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  .product-table td img {
+    margin: 10px auto;
+    max-width: 80%;
+  }
+
+  .add-product {
+    text-align: center;
+  }
+
+  .add-product a {
+    display: block;
+    margin-top: 10px;
+  }
+}
+
+        .table-container {
+            position: relative;
         }
-
-        .product-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-            .product-table th,
-            .product-table td {
-                padding: 10px;
-                text-align: left;
-            }
-
-                .product-table th:last-child,
-                .product-table td:last-child {
-                    text-align: center;
-                }
-
-                .product-table th:first-child,
-                .product-table td:first-child {
-                    width: 10%;
-                }
-
-                .product-table th:nth-child(2),
-                .product-table td:nth-child(2) {
-                    width: 50%;
-                }
-
-                .product-table th:nth-child(3),
-                .product-table td:nth-child(3) {
-                    width: 20%;
-                }
-
-                .product-table th:last-child,
-                .product-table td:last-child {
-                    width: 20%;
-                }
-
-        .edit-btn,
-        .delete-btn {
-            display: inline-block;
-            margin-right: 10px;
-        }
-
-            .edit-btn i,
-            .delete-btn i {
-                color: #0066CC;
-                font-size: 16px;
-            }
 
         .add-product {
-            text-align: center;
-            margin-top: 20px;
+            position: absolute;
+            top: 0;
+            right: 0;
         }
 
-            .add-product a {
-                display: inline-block;
-                padding: 10px 20px;
-                background-color: #0066CC;
-                color: #fff;
-                text-decoration: none;
-                border-radius: 5px;
-            }
-        .product-table td:nth-child(4) {
-            max-width: 150px;
-            max-height: 150px;
-            overflow: hidden;
-        }
-
-            .product-table td:nth-child(4) img {
-                max-width: 100%;
-                height: auto;
-            }
 
     </style>
 </head>
@@ -96,6 +132,7 @@
             <tr>
                 <th>Mã SP</th>
                 <th>Tên sản phẩm</th>
+                <th>Giá</th>
                 <th>Tình trạng</th>
                 <th style="width: 13%">Ảnh sản phẩm</th>
                 <th>Action</th>
@@ -104,16 +141,17 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>@item.MaSanPham</td>
-                    <td>@item.TenSanPham</td>
-                    <td>@item.TinhTrang</td>
-                    <td><img src="/Asset/images/@item.HinhChinh" alt="@item.TenSanPham"/></td>
-                    <td>
-                        <a href="@Url.Action("Edit","SanPham2",new {id = @item.MaSanPham})" class="edit-btn"><i class="fas fa-edit"></i></a>
-                        <a href="@Url.Action("XoaTamThoi","SanPham2",new {id = @item.MaSanPham})" class="delete-btn"><i class="fas fa-trash"></i></a>
-                    </td>
-                </tr>
+            <tr>
+                <td>@item.MaSanPham</td>
+                <td>@item.TenSanPham</td>
+                <td>@String.Format("{0:#,##0.##} đ", (decimal)item.Gia)</td>
+                <td>@item.TinhTrang</td>
+                <td><img src="/Asset/images/@item.HinhChinh" alt="@item.TenSanPham" /></td>
+                <td>
+                    <a href="@Url.Action("Edit","SanPham2",new {id = @item.MaSanPham})" class="edit-btn"><i class="fas fa-edit"></i></a>
+                    <a href="@Url.Action("XoaTamThoi","SanPham2",new {id = @item.MaSanPham})" class="delete-btn"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>   

@@ -16,7 +16,7 @@
                         </a>
                         <div class="desc">
                             <h2><a href="@Url.Action("Details", new { id = @item.MaSanPham })">@item.TenSanPham</a></h2>
-                            <span class="price">@item.Gia VNĐ</span>
+                            <span class="price" style="font-size: 22px;">@String.Format("{0:#,##0.##} đ", (decimal)item.Gia)</span>
                         </div>
                     </div>
                 </div>

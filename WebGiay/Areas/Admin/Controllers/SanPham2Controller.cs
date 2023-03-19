@@ -33,8 +33,44 @@ namespace WebGiay.Areas.Admin.Controllers
             return View();
         }
 
-        // POST: Admin/SanPham2/Create
+
         [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Create(SanPham model, HttpPostedFileBase[] Files)
+        {
+            if (ModelState.IsValid)
+            {
+                // Lưu ảnh vào server và lấy tên của từng ảnh
+                List<string> fileNames = new List<string>();
+                foreach (var file in Files)
+                {
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(file.FileName);
+                        var path = Path.Combine(Server.MapPath("~/Asset/Images/"), fileName);
+                        file.SaveAs(path);
+                        fileNames.Add(fileName);
+                    }
+                }
+                // Lưu tên của từng ảnh vào đối tượng sản phẩm
+                model.HinhChinh = fileNames[0];
+                model.Hinh1 = fileNames.Count > 1 ? fileNames[1] : null;
+                model.Hinh2 = fileNames.Count > 2 ? fileNames[2] : null;
+                model.Hinh3 = fileNames.Count > 3 ? fileNames[3] : null;
+                model.Hinh4 = fileNames.Count > 4 ? fileNames[4] : null;
+
+                // Lưu đối tượng sản phẩm vào cơ sở dữ liệu
+                ShopOnlineBUS.InsertSP(model);
+                return RedirectToAction("Index");
+            }
+
+            // Nếu ModelState không hợp lệ, trả về form với các giá trị đã nhập
+ 
+            return View();
+        }
+
+        // POST: Admin/SanPham2/Create
+        /*[HttpPost]
         [ValidateInput(false)]
         public ActionResult Create(SanPham sp)
         {
@@ -49,29 +85,69 @@ namespace WebGiay.Areas.Admin.Controllers
             {
                 return View();
             }
-        }
+        }*/
 
         // GET: Admin/SanPham2/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(String id)
         {
-            return View();
+            ViewBag.MaNhaSanXuat = new SelectList(NhaSanXuatBUS.DanhSach(), "MaNhaSanXuat", "TenNhaSanXuat", ShopOnlineBUS.ChiTiet(id).MaNhaSanXuat);
+            ViewBag.MaLoaiSanPham = new SelectList(LoaiSanPhamBUS.DanhSach(), "MaLoaiSanPham", "TenLoaiSanPham", ShopOnlineBUS.ChiTiet(id).MaLoaiSanPham);
+            return View(ShopOnlineBUS.ChiTiet(id));
         }
 
         // POST: Admin/SanPham2/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateInput(false)]
+        public ActionResult Edit(String id, SanPham model, HttpPostedFileBase[] Files)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
+                // Lấy đối tượng sản phẩm cũ
+                var oldModel = ShopOnlineBUS.ChiTiet(id);
 
+                // Kiểm tra và cập nhật tên file của từng ảnh mới
+                if (Files != null && Files.Length > 0)
+                {
+                    // Lưu ảnh vào server và lấy tên của từng ảnh
+                    List<string> fileNames = new List<string>();
+                    foreach (var file in Files)
+                    {
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            var fileName = Path.GetFileName(file.FileName);
+                            var path = Path.Combine(Server.MapPath("~/Asset/Images/"), fileName);
+                            file.SaveAs(path);
+                            fileNames.Add(fileName);
+                        }
+                    }
+
+                    // Cập nhật tên file của từng ảnh mới hoặc giữ nguyên tên file của ảnh cũ
+                    model.HinhChinh = fileNames.Count > 0 ? fileNames[0] : oldModel.HinhChinh;
+                    model.Hinh1 = fileNames.Count > 1 ? fileNames[1] : oldModel.Hinh1;
+                    model.Hinh2 = fileNames.Count > 2 ? fileNames[2] : oldModel.Hinh2;
+                    model.Hinh3 = fileNames.Count > 3 ? fileNames[3] : oldModel.Hinh3;
+                    model.Hinh4 = fileNames.Count > 4 ? fileNames[4] : oldModel.Hinh4;
+                }
+                else
+                {
+                    // Nếu không có ảnh mới, giữ nguyên tên file của từng ảnh cũ
+                    model.HinhChinh = oldModel.HinhChinh;
+                    model.Hinh1 = oldModel.Hinh1;
+                    model.Hinh2 = oldModel.Hinh2;
+                    model.Hinh3 = oldModel.Hinh3;
+                    model.Hinh4 = oldModel.Hinh4;
+                }
+
+                // Lưu đối tượng sản phẩm vào cơ sở dữ liệu
+                ShopOnlineBUS.UpdateSP(id, model);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            // Nếu ModelState không hợp lệ, trả về form với các giá trị đã nhập
+
+            return View();
         }
+
 
         // GET: Admin/SanPham2/Delete/5
         public ActionResult Delete(int id)

@@ -1,9 +1,8 @@
-﻿
+﻿@model ShopOnlineConnection.SanPham
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_MainAdminLayout.cshtml";
 }
-
 
 <style>
     .container {
@@ -48,33 +47,33 @@
 
 <div class="container">
     <h2>Thêm Sản phẩm</h2>
-    @using (Html.BeginForm("Create", "SanPham2", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Edit", "SanPham2", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="form-group">
             <label for="ma-giay">Mã giày:</label>
-            <input type="number" class="form-control" id="ma-giay" placeholder="Nhập mã giày" name="MaSanPham">
+            <input type="number" class="form-control" id="ma-giay" placeholder="Nhập mã giày" name="MaSanPham" value="@Model.MaSanPham" readonly>
         </div>
         <div class="form-group">
             <label for="ma-loai-giay">Mã loại giày:</label>
 
-            @Html.DropDownList("MaLoaiSanPham", (IEnumerable<SelectListItem>)ViewBag.MaLoaiSanPham, "-- Chọn loại sản phẩm --", new { @class = "form-control" })
+            @Html.DropDownList("MaLoaiSanPham", null, new { @class = "form-control" })
         </div>
         <div class="form-group">
             <label for="ten-giay">Tên giày:</label>
-            <input type="text" class="form-control" id="ten-giay" placeholder="Nhập tên giày" name="TenSanPham">
+            <input type="text" class="form-control" id="ten-giay" placeholder="Nhập tên giày" name="TenSanPham" value="@Model.TenSanPham">
         </div>
         <div class="form-group">
             <label for="hinh">Hình Chính:</label>
             <div class="input-group">
                 <input type="file" class="form-control" id="hinhchinh" name="Files[0]" onchange="previewImage(event, 'img-preview-chinh')">
-                <span class="input-group-addon"><img id="img-preview-chinh" src="#" alt="Hình sản phẩm"></span>
+                <span class="input-group-addon"><img id="img-preview-chinh" src="~/Asset/images/@Model.HinhChinh" alt="Hình sản phẩm"></span>
             </div>
         </div>
         <div class="form-group">
             <label for="hinh">Hình 1:</label>
             <div class="input-group">
                 <input type="file" class="form-control" id="hinh1" name="Files[1]" onchange="previewImage(event, 'img-preview-1')">
-                <span class="input-group-addon"><img id="img-preview-1" src="#" alt="Hình sản phẩm"></span>
+                <span class="input-group-addon"><img id="img-preview-1" src="~/Asset/images/@Model.Hinh1" alt="Hình sản phẩm"></span>
             </div>
         </div>
 
@@ -82,49 +81,58 @@
             <label for="hinh">Hình 2:</label>
             <div class="input-group">
                 <input type="file" class="form-control" id="hinh2" name="Files[2]" onchange="previewImage(event, 'img-preview-2')">
-                <span class="input-group-addon"><img id="img-preview-2" src="#" alt="Hình sản phẩm"></span>
+                <span class="input-group-addon"><img id="img-preview-2" src="~/Asset/images/@Model.Hinh2" alt="Hình sản phẩm"></span>
             </div>
         </div>
         <div class="form-group">
             <label for="hinh">Hình 3:</label>
             <div class="input-group">
                 <input type="file" class="form-control" id="hinh3" name="Files[3]" onchange="previewImage(event, 'img-preview-3')">
-                <span class="input-group-addon"><img id="img-preview-3" src="#" alt="Hình sản phẩm"></span>
+                <span class="input-group-addon"><img id="img-preview-3" src="~/Asset/images/@Model.Hinh3" alt="Hình sản phẩm"></span>
             </div>
         </div>
         <div class="form-group">
             <label for="hinh">Hình 4:</label>
             <div class="input-group">
                 <input type="file" class="form-control" id="hinh4" name="Files[4]" onchange="previewImage(event, 'img-preview-4')">
-                <span class="input-group-addon"><img id="img-preview-4" src="#" alt="Hình sản phẩm"></span>
+                <span class="input-group-addon"><img id="img-preview-4" src="~/Asset/images/@Model.HinhChinh" alt="Hình sản phẩm"></span>
             </div>
         </div>
         <div class="form-group">
             <label for="gia">Giá:</label>
-            <input type="number" class="form-control" id="gia" placeholder="Nhập giá giày" name="Gia">
+            <input type="number" class="form-control" id="gia" placeholder="Nhập giá giày" name="Gia" value="@Model.Gia">
         </div>
         <div class="form-group">
             <label for="ghi-chu">Ghi chú:</label>
-            <textarea class="form-control" id="ghi-chu" placeholder="Nhập ghi chú" name="GhiChu" rows="5"></textarea>
+            <textarea class="form-control" id="ghi-chu" placeholder="Nhập ghi chú" name="GhiChu" rows="5">@Model.GhiChu</textarea>
         </div>
 
         <div class="form-group">
             <label for="nsx">Nhà sản xuất:</label>
-            @Html.DropDownList("MaNhaSanXuat", (IEnumerable<SelectListItem>)ViewBag.MaNhaSanXuat, "-- Chọn nhà sản xuất --", new { @class = "form-control" })
+            @Html.DropDownList("MaNhaSanXuat", null, new { @class = "form-control" })
         </div>
         <div class="form-group">
             <label for="thong-so">Thông tin:</label>
-            <textarea class="form-control" id="thong-so" placeholder="Nhập thông số" name="CauHinh" rows="10"></textarea>
+            <textarea class="form-control" id="thong-so" placeholder="Nhập thông số" name="CauHinh" rows="10">@Model.CauHinh</textarea>
         </div>
         <div class="form-group">
             <label for="tinh-trang">Tình trạng:</label>
             <select class="form-control" id="tinh-trang" name="TinhTrang" required>
-                <option value="0">Mở khóa</option>
-                <option value="1">Khóa</option>
+                @if (int.Parse(Model.TinhTrang) == 1)
+                {
+                    <option value="0">Mở khóa</option>
+                    <option value="1" selected>Khóa</option>
+                }
+                else
+                {
+                    <option value="0" selected>Mở khóa</option>
+                    <option value="1">Khóa</option>
+                }
+
             </select>
         </div>
 
-        <button type="submit" class="btn btn-primary">Thêm</button>
+        <button type="submit" class="btn btn-primary">Lưu</button>
     }
 
 
@@ -151,6 +159,4 @@
             });
     </script>
 </div>
-
-
 
