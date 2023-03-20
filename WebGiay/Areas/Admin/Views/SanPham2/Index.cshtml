@@ -149,7 +149,7 @@
                 <td><img src="/Asset/images/@item.HinhChinh" alt="@item.TenSanPham" /></td>
                 <td>
                     <a href="@Url.Action("Edit","SanPham2",new {id = @item.MaSanPham})" class="edit-btn"><i class="fas fa-edit"></i></a>
-                    <a href="@Url.Action("XoaTamThoi","SanPham2",new {id = @item.MaSanPham})" class="delete-btn"><i class="fas fa-trash"></i></a>
+                    <a href="@Url.Action("Delete","SanPham2",new {id = @item.MaSanPham})" class="delete-btn"><i class="fas fa-trash"></i></a>
                 </td>
             </tr>
             }

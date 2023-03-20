@@ -215,6 +215,7 @@
     <Content Include="Areas\AssetAdmin\js\demo\chart-bar-demo.js" />
     <Content Include="Areas\AssetAdmin\js\demo\chart-pie-demo.js" />
     <Content Include="Areas\AssetAdmin\js\demo\datatables-demo.js" />
+    <Content Include="Areas\AssetAdmin\js\products\reviewImages.js" />
     <Content Include="Areas\AssetAdmin\js\sb-admin-2.js" />
     <Content Include="Areas\AssetAdmin\js\sb-admin-2.min.js" />
     <Content Include="Areas\AssetAdmin\vendor\bootstrap\js\bootstrap.bundle.js" />
@@ -3266,6 +3267,7 @@
     <Content Include="Areas\AssetAdmin\ckeditor5-build-classic\LICENSE.md" />
     <Content Include="Areas\AssetAdmin\ckeditor5-build-classic\README.md" />
     <Content Include="Areas\Admin\Views\SanPham2\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SanPham2\Delete.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

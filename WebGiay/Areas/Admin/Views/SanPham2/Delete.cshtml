@@ -1,0 +1,111 @@
+﻿@model ShopOnlineConnection.SanPham
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_MainAdminLayout.cshtml";
+}
+
+<style>
+    .container {
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+    }
+
+    #img-preview-chinh {
+        max-width: 200px;
+        max-height: 200px;
+        margin: 10px 0;
+    }
+
+    #img-preview-1 {
+        max-width: 200px;
+        max-height: 200px;
+        margin: 10px 0;
+    }
+
+    #img-preview-2 {
+        max-width: 200px;
+        max-height: 200px;
+        margin: 10px 0;
+    }
+
+    #img-preview-3 {
+        max-width: 200px;
+        max-height: 200px;
+        margin: 10px 0;
+    }
+
+    #img-preview-4 {
+        max-width: 200px;
+        max-height: 200px;
+        margin: 10px 0;
+    }
+</style>
+<head>
+    <script src="~/Areas/AssetAdmin/ckeditor5-build-classic/ckeditor.js"></script>
+</head>
+
+<div class="container">
+    <h2>Xóa Sản phẩm</h2>
+    @using (Html.BeginForm("Delete", "SanPham2", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            <label for="ma-giay">Mã giày:</label>
+            <input type="number" class="form-control" id="ma-giay" placeholder="Nhập mã giày" name="MaSanPham" value="@Model.MaSanPham" readonly>
+        </div>
+        <div class="form-group">
+            <label for="ma-loai-giay">Mã loại giày:</label>
+
+            @Html.DropDownList("MaLoaiSanPham", null, new { @class = "form-control" , @disabled = "disabled" })
+        </div>
+        <div class="form-group">
+            <label for="ten-giay">Tên giày:</label>
+            <input type="text" class="form-control" id="ten-giay" placeholder="Nhập tên giày" name="TenSanPham" value="@Model.TenSanPham" readonly>
+        </div>
+        <div class="form-group">
+            <label for="gia">Giá:</label>
+            <input type="number" class="form-control" id="gia" placeholder="Nhập giá giày" name="Gia" value="@Model.Gia" readonly>
+        </div>
+        <div class="form-group">
+            <label for="ghi-chu">Ghi chú:</label>
+            <textarea class="form-control" id="ghi-chu" placeholder="Nhập ghi chú" name="GhiChu" rows="5">@Model.GhiChu</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="nsx">Nhà sản xuất:</label>
+            @Html.DropDownList("MaNhaSanXuat", null, new { @class = "form-control", @disabled = "disabled" })
+        </div>
+        <div class="form-group">
+            <label for="thong-so">Thông tin:</label>
+            <textarea class="form-control" id="thong-so" placeholder="Nhập thông số" name="CauHinh" rows="10">@Model.CauHinh</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Xóa</button>
+    }
+
+
+
+    <script>
+        function previewImage(event, imgPreviewId) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById(imgPreviewId);
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+        ClassicEditor
+            .create(document.querySelector('#thong-so'))
+            .catch(error => {
+                console.error(error);
+            });
+
+        ClassicEditor
+            .create(document.querySelector('#ghi-chu'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+</div>
+
+

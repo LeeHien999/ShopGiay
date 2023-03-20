@@ -150,25 +150,82 @@ namespace WebGiay.Areas.Admin.Controllers
 
 
         // GET: Admin/SanPham2/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(String id)
         {
-            return View();
+            ViewBag.MaNhaSanXuat = new SelectList(NhaSanXuatBUS.DanhSach(), "MaNhaSanXuat", "TenNhaSanXuat", ShopOnlineBUS.ChiTiet(id).MaNhaSanXuat);
+            ViewBag.MaLoaiSanPham = new SelectList(LoaiSanPhamBUS.DanhSach(), "MaLoaiSanPham", "TenLoaiSanPham", ShopOnlineBUS.ChiTiet(id).MaLoaiSanPham);
+            return View(ShopOnlineBUS.ChiTiet(id));
         }
 
         // POST: Admin/SanPham2/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [ValidateInput(false)]
+        public ActionResult Delete(String id, SanPham model, HttpPostedFileBase[] Files)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add delete logic here
+                // Lấy đối tượng sản phẩm cũ
+                var oldModel = ShopOnlineBUS.ChiTiet(id);
 
+                // Kiểm tra và cập nhật tên file của từng ảnh mới
+                if (Files != null && Files.Length > 0)
+                {
+                    // Lưu ảnh vào server và lấy tên của từng ảnh
+                    List<string> fileNames = new List<string>();
+                    foreach (var file in Files)
+                    {
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            var fileName = Path.GetFileName(file.FileName);
+                            var path = Path.Combine(Server.MapPath("~/Asset/images/"), fileName);
+                            file.SaveAs(path);
+                            fileNames.Add(fileName);
+                        }
+                    }
+
+                    // Cập nhật tên file của từng ảnh mới hoặc giữ nguyên tên file của ảnh cũ
+                    model.HinhChinh = fileNames.Count > 0 ? fileNames[0] : oldModel.HinhChinh;
+                    model.Hinh1 = fileNames.Count > 1 ? fileNames[1] : oldModel.Hinh1;
+                    model.Hinh2 = fileNames.Count > 2 ? fileNames[2] : oldModel.Hinh2;
+                    model.Hinh3 = fileNames.Count > 3 ? fileNames[3] : oldModel.Hinh3;
+                    model.Hinh4 = fileNames.Count > 4 ? fileNames[4] : oldModel.Hinh4;
+                }
+                else
+                {
+                    // Nếu không có ảnh mới, giữ nguyên tên file của từng ảnh cũ
+                    model.HinhChinh = oldModel.HinhChinh;
+                    model.Hinh1 = oldModel.Hinh1;
+                    model.Hinh2 = oldModel.Hinh2;
+                    model.Hinh3 = oldModel.Hinh3;
+                    model.Hinh4 = oldModel.Hinh4;
+                }
+
+                // Lưu đối tượng sản phẩm vào cơ sở dữ liệu
+                if (model.TinhTrang == "0")
+                {
+                    model.TinhTrang = "1";
+                }
+                else
+                    model.TinhTrang = "1";
+
+
+                if (model.LuotView > 10000)
+                    model.LuotView = 0;
+                else
+                    model.LuotView = 0; //tránh tình trạng trả về null gây lỗi 
+
+                if (model.SoLuongDaBan > 10000)
+                    model.SoLuongDaBan = 0;
+                else
+                    model.SoLuongDaBan = 0;
+
+                ShopOnlineBUS.UpdateSP(id, model);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            // Nếu ModelState không hợp lệ, trả về form với các giá trị đã nhập
+
+            return View();
         }
     }
 }
