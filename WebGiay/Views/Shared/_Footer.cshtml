@@ -74,3 +74,68 @@
         </div>
     </div>
 </footer>
+
+<div class="gototop js-top">
+    <a href="#" class="js-gotop"><i class="ion-ios-arrow-up"></i></a>
+</div>
+
+<!-- jQuery -->
+<script src="/Asset/js/jquery.min.js"></script>
+<!-- popper -->
+<script src="/Asset/js/popper.min.js"></script>
+<!-- bootstrap 4.1 -->
+<script src="/Asset/js/bootstrap.min.js"></script>
+<!-- jQuery easing -->
+<script src="/Asset/js/jquery.easing.1.3.js"></script>
+<!-- Waypoints -->
+<script src="/Asset/js/jquery.waypoints.min.js"></script>
+<!-- Flexslider -->
+<script src="/Asset/js/jquery.flexslider-min.js"></script>
+<!-- Owl carousel -->
+<script src="/Asset/js/owl.carousel.min.js"></script>
+<!-- Magnific Popup -->
+<script src="/Asset/js/jquery.magnific-popup.min.js"></script>
+<script src="/Asset/js/magnific-popup-options.js"></script>
+<!-- Date Picker -->
+<script src="/Asset/js/bootstrap-datepicker.js"></script>
+<!-- Stellar Parallax -->
+<script src="/Asset/js/jquery.stellar.min.js"></script>
+<!-- Main -->
+<script src="/Asset/js/main.js"></script>
+<script>
+    $(document).ready(function () {
+
+        var quantitiy = 0;
+        $('.quantity-right-plus').click(function (e) {
+
+            // Stop acting like a button
+            e.preventDefault();
+            // Get the field name
+            var quantity = parseInt($('#quantity').val());
+
+            // If is not undefined
+
+            $('#quantity').val(quantity + 1);
+
+
+            // Increment
+
+        });
+
+        $('.quantity-left-minus').click(function (e) {
+            // Stop acting like a button
+            e.preventDefault();
+            // Get the field name
+            var quantity = parseInt($('#quantity').val());
+
+            // If is not undefined
+
+            // Increment
+            if (quantity > 0) {
+                $('#quantity').val(quantity - 1);
+            }
+        });
+
+    });
+</script>
+

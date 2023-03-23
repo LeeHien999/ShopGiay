@@ -11,11 +11,11 @@
             {
                 <div class="col-lg-3 mb-4 text-center">
                     <div class="product-entry border">
-                        <a href="@Url.Action("Details", new { id = @item.MaSanPham })" class="prod-img">
+                        <a href="@Url.Action("Details", "Shop", new { id = @item.MaSanPham })" class="prod-img">
                             <img src="/Asset/images/@item.HinhChinh" class="img-fluid" alt="Free html5 bootstrap 4 template">
                         </a>
                         <div class="desc">
-                            <h2><a href="@Url.Action("Details", new { id = @item.MaSanPham })">@item.TenSanPham</a></h2>
+                            <h2><a href="@Url.Action("Details", "Shop", new { id = @item.MaSanPham })">@item.TenSanPham</a></h2>
                             <span class="price" style="font-size: 22px;">@String.Format("{0:#,##0.##} đ", (decimal)item.Gia)</span>
                         </div>
                     </div>

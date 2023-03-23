@@ -6,6 +6,7 @@
 <!DOCTYPE HTML>
 <html>
 @{
+
     var HeaderVartital = Html.Partial("_Header");
     HeaderVartital = new MvcHtmlString(HeaderVartital.ToString());
 }
@@ -73,7 +74,8 @@
                                         }
                                     </ul>
                                 </li>
-                                <li class="cart"><a href="cart.html"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
+
+                                <li class="cart"><a href="@Url.Action("Index", "GioHang")"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
                             </ul>
                         </div>
                     </div>
@@ -109,7 +111,7 @@
     <div class="gototop js-top">
         <a href="#" class="js-gotop"><i class="ion-ios-arrow-up"></i></a>
     </div>
-    
+
     <!-- jQuery -->
     <script src="/Asset/js/jquery.min.js"></script>
     <!-- popper -->

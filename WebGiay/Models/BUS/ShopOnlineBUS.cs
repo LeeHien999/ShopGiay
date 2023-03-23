@@ -22,17 +22,27 @@ namespace WebGiay.Models.BUS
         public static IEnumerable<SanPham> Top4New()
         {
             var db = new ShopOnlineConnectionDB();
-            return db.Query<SanPham>("Select Top 4 * from SanPham where GhiChu = N'New'");
+            return db.Query<SanPham>("Select Top 4 * from SanPham where GhiChu = N'New' and LuotView < 1000 and TinhTrang = 0");
         }
 
         public static IEnumerable<SanPham> BestSeller()
         {
             var db = new ShopOnlineConnectionDB();
-            return db.Query<SanPham>("Select Top 8 * from SanPham where LuotView >0");
+            return db.Query<SanPham>("Select Top 8 * from SanPham where LuotView > 0 and TinhTrang = 0");
         }
 
+        //--------Lấy thêm Tên NSX để load phần detail--------
+        public static NhaSanXuat LayThongTinNhaSanXuat(String id)
+        {
+            var db = new ShopOnlineConnectionDB();
+            return db.SingleOrDefault<NhaSanXuat>("Select * from NhaSanXuat where MaNhaSanXuat = " + id + "");
+        }
 
-
+        public static SanPham LoadAvatar(String id)
+        {
+            var db = new ShopOnlineConnectionDB();
+            return db.SingleOrDefault<SanPham>("select * from SanPham where MaSanPham = '" + id + "'");
+        }
         //---------------------------Admin---------------------
         public static IEnumerable<SanPham> DanhSachSP()
         {

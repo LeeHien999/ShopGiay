@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <p class="bread"><span><a href="@Url.Action("Index", "Home", "Home")">Home</a></span> / <span>Products</span>
+                <p class="bread"><span><a href="@Url.Action("Index", "Home", "Home")">Home</a></span> / <span>@ViewBag.TenNhaSanXuat</span>
             </div>
         </div>
     </div>
@@ -19,7 +19,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
-                <h2>View All Products</h2>
+                <h2>View All Products of @ViewBag.TenNhaSanXuat</h2>
             </div>
         </div>
         <div class="row row-pb-md">

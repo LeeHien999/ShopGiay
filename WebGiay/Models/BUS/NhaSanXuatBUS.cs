@@ -46,5 +46,12 @@ namespace WebGiay.Models.BUS
             var db = new ShopOnlineConnectionDB();
             db.Update(nsx, id);
         }
+
+        //------Lấy thêm tên nhà sản xuất để get lên View-------
+        public static NhaSanXuat LayThongTinNhaSanXuat(String id)
+        {
+            var db = new ShopOnlineConnectionDB();
+            return db.SingleOrDefault<NhaSanXuat>("Select * from NhaSanXuat where MaNhaSanXuat = " + id + "");
+        }
     }
 }

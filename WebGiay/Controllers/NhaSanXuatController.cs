@@ -13,8 +13,14 @@ namespace WebGiay.Controllers
         // GET: NhaSanXuat
         public ActionResult Index(String id, int page = 1, int pagesize = 8)
         {
+            //-------Lấy tên nhà sản xuất-----------
+            var thongTinNhaSanXuat = NhaSanXuatBUS.LayThongTinNhaSanXuat(id);
+            ViewBag.TenNhaSanXuat = thongTinNhaSanXuat.TenNhaSanXuat;
+
             var ds = NhaSanXuatBUS.ChiTiet(id).ToPagedList(page, pagesize);
             return View(ds);
         }
+
+
     }
 }
