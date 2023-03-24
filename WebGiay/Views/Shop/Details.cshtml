@@ -83,30 +83,37 @@
                             </ul>
                         </div>
                     </div>
-                    @using (Html.BeginForm("Them", "GioHang", FormMethod.Post))
+                    @if (User.Identity.IsAuthenticated)
                     {
-                    <div class="input-group mb-4">
+                        using (Html.BeginForm("Them", "GioHang", FormMethod.Post))
+                        {
+                            <div class="input-group mb-4">
 
-                        <span class="input-group-btn">
-                            <button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
-                                <i class="icon-minus2"></i>
-                            </button>
-                        </span>
-                        <input hidden value="@Model.Gia" name="Gia" />
-                        <input hidden value="@Model.MaSanPham" name="MaSanPham" />
-                        <input hidden value="@Model.TenSanPham" name="TenSanPham" />
-                        <input type="number" id="quantity" name="soluong" class="form-control input-number" value="1" min="1" max="100">
-                        <span class="input-group-btn ml-1">
-                            <button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-                                <i class="icon-plus2"></i>
-                            </button>
-                        </span>
-                    </div>
-                        <div class="row">
-                            <div class="col-sm-12 text-center">
-                                <p class="addtocart"><input type="submit" class="btn btn-primary btn-addtocart" value="Add to Cart"/></p>
+                                <span class="input-group-btn">
+                                    <button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
+                                        <i class="icon-minus2"></i>
+                                    </button>
+                                </span>
+                                <input hidden value="@Model.Gia" name="Gia" />
+                                <input hidden value="@Model.MaSanPham" name="MaSanPham" />
+                                <input hidden value="@Model.TenSanPham" name="TenSanPham" />
+                                <input type="number" id="quantity" name="soluong" class="form-control input-number" value="1" min="1" max="100">
+                                <span class="input-group-btn ml-1">
+                                    <button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
+                                        <i class="icon-plus2"></i>
+                                    </button>
+                                </span>
                             </div>
-                        </div>
+                            <div class="row">
+                                <div class="col-sm-12 text-center">
+                                    <p class="addtocart"><input type="submit" class="btn btn-primary btn-addtocart" value="Add to Cart" /></p>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <h3>Vui lòng đăng nhập để mua hàng</h3>
                     }
 
                 </div>

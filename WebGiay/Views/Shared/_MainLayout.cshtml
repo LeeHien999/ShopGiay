@@ -1,4 +1,4 @@
-﻿
+﻿@using Microsoft.AspNet.Identity;
 @{
     ViewBag.Title = "_MainLayout";
 }
@@ -10,6 +10,7 @@
     var HeaderVartital = Html.Partial("_Header");
     HeaderVartital = new MvcHtmlString(HeaderVartital.ToString());
 }
+
 
 @HeaderVartital
 <body>
@@ -48,8 +49,8 @@
                                 @Html.Partial("_NhaSanXuat", WebGiay.Models.BUS.NhaSanXuatBUS.DanhSach())
                                 @Html.Partial("_LoaiSanPham", WebGiay.Models.BUS.LoaiSanPhamBUS.DanhSach())
 
-                                <li><a href="about.html">About</a></li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li>@Html.ActionLink("About", "About", "Home")</li>
+                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                                 <li class="has-dropdown">
 
                                     @if (User.Identity.IsAuthenticated)
@@ -74,8 +75,11 @@
                                         }
                                     </ul>
                                 </li>
+                                @{
 
-                                <li class="cart"><a href="@Url.Action("Index", "GioHang")"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
+                                    var gioHang = WebGiay.Models.BUS.GioHangBUS.DanhSach(User.Identity.GetUserId());
+                                }
+                                <li class="cart"><a href="@Url.Action("Index", "GioHang")"><i class="icon-shopping-cart"></i> Cart [@gioHang.Count()]</a></li>
                             </ul>
                         </div>
                     </div>

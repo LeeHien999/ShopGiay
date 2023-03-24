@@ -14,8 +14,17 @@ namespace WebGiay.Controllers
         // GET: GioHang
         public ActionResult Index()
         {
-            ViewBag.TongTien = GioHangBUS.TongTien(User.Identity.GetUserId());
-            return View(GioHangBUS.DanhSach(User.Identity.GetUserId()));
+            var userId = User.Identity.GetUserId();
+            var gioHang = GioHangBUS.DanhSach(userId);
+            if (gioHang.Count() == 0)
+            {
+                ViewBag.TongTien = 0;
+            }
+            else
+            {
+                ViewBag.TongTien = GioHangBUS.TongTien(userId);
+            }
+            return View(gioHang);
         }
 
         [HttpPost]
@@ -48,7 +57,7 @@ namespace WebGiay.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult Xoa(string MaSanPham)
         {
             try

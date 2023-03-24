@@ -58,45 +58,48 @@
 
                 @foreach (var item in Model)
                 {
-                    <div class="product-cart d-flex">
-                        <div class="one-forth">
-                            <div class="product-img" style="background-image: url(/Asset/images/@WebGiay.Models.BUS.ShopOnlineBUS.LoadAvatar(item.MaSanPham.ToString()).HinhChinh);">
-                            </div>
-                            <div class="display-tc">
-                                <h3>@item.TenSanPham</h3>
-                            </div>
+                <div class="product-cart d-flex">
+                    <div class="one-forth">
+                        <div class="product-img" style="background-image: url(/Asset/images/@WebGiay.Models.BUS.ShopOnlineBUS.LoadAvatar(item.MaSanPham.ToString()).HinhChinh);">
                         </div>
+                        <div class="display-tc">
+                            <h3>@item.TenSanPham</h3>
+                        </div>
+                    </div>
 
+                    <div class="one-eight text-center">
+                        <div class="display-tc">
+                            <span class="price">@String.Format("{0:#,##0.##} đ", (decimal)item.Gia)</span>
+                        </div>
+                    </div>
+                    @using (Html.BeginForm("CapNhat", "GioHang"))
+                    {
                         <div class="one-eight text-center">
                             <div class="display-tc">
-                                <span class="price">@String.Format("{0:#,##0.##} đ", (decimal)item.Gia)</span>
+                                <input type="hidden" name="Gia" value="@item.Gia" />
+                                <input type="hidden" name="MaSanPham" value="@item.MaSanPham" />
+                                <input type="number" id="quantity" name="SoLuong" class="form-control input-number text-center" value="@item.SoLuong" min="1" max="100">
+
                             </div>
                         </div>
-                        @using (Html.BeginForm("CapNhat", "GioHang"))
-                        {
-                            <div class="one-eight text-center">
-                                <div class="display-tc">
-                                    <input type="hidden" name="Gia" value="@item.Gia" />
-                                    <input type="hidden" name="MaSanPham" value="@item.MaSanPham" />
-                                    <input type="text" id="quantity" name="SoLuong" class="form-control input-number text-center" value="@item.SoLuong" min="1" max="100">
-                                </div>
+                        <div class="one-eight text-center">
+                            <div class="display-tc">
+                                <span class="price" mane="TongTien">@String.Format("{0:#,##0.##} đ", (decimal)item.TongTien)</span>
                             </div>
-                            <div class="one-eight text-center">
-                                <div class="display-tc">
-                                    <span class="price" mane="TongTien">@String.Format("{0:#,##0.##} đ", (decimal)item.TongTien)</span>
-                                </div>
-                            </div>
-                            <div class="one-eight text-center">
-                                <div class="display-tc">
-                                    <a href="@Url.Action("Xoa", "GioHang", new {masanpham = item.MaSanPham})" class="closed"></a>
-                                </div>
-                            </div>
-                        }
-
+                        </div>
+                        //nút cập nhật ở đây nhưng ẩn cho nó đẹp khi cần cập nhật lại số lượng chỉ cần nhấn enter sau khi nhập xong
+                        <input type="submit" id="submit-button" hidden>
+                    }
+                    <div class="one-eight text-center">
+                        <div class="display-tc">
+                            <a href="@Url.Action("Xoa", "GioHang", new {masanpham = item.MaSanPham})" class="closed"></a>
+                        </div>
                     </div>
+                    
+                </div>
                 }
                 <div class="col-sm-3">
-                    <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Tiếp tục mua hàng</a>
+                    <a href="@Url.Action("Index", "Shop")" class="btn btn-primary">Tiếp tục mua hàng</a>
                 </div>
             </div>
         </div>
@@ -189,3 +192,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('#quantity').change(function () {
+            $('#submit-button').trigger('click');
+        });
+    });
+
+</script>

@@ -58,6 +58,8 @@ namespace WebGiay.Areas.Admin.Controllers
                 model.Hinh2 = fileNames.Count > 2 ? fileNames[2] : null;
                 model.Hinh3 = fileNames.Count > 3 ? fileNames[3] : null;
                 model.Hinh4 = fileNames.Count > 4 ? fileNames[4] : null;
+                model.LuotView = 0;
+                model.SoLuongDaBan = 0;
 
                 // Lưu đối tượng sản phẩm vào cơ sở dữ liệu
                 ShopOnlineBUS.InsertSP(model);
@@ -137,7 +139,6 @@ namespace WebGiay.Areas.Admin.Controllers
                     model.Hinh3 = oldModel.Hinh3;
                     model.Hinh4 = oldModel.Hinh4;
                 }
-
                 // Lưu đối tượng sản phẩm vào cơ sở dữ liệu
                 ShopOnlineBUS.UpdateSP(id, model);
                 return RedirectToAction("Index");

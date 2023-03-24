@@ -1,7 +1,35 @@
 ﻿@{
     ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p class="bread"><span><a href="@Url.Action("Index", "Home")">Home</a></span> / <span>About</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="colorlib-about">
+    <div class="container">
+        <div class="row row-pb-lg">
+            <div class="col-sm-6 mb-3">
+                <div class="video colorlib-video" style="background-image: url(images/about.jpg);">
+                    <a href="https://vimeo.com/channels/staffpicks/93951774" class="popup-vimeo"><i class="icon-play3"></i></a>
+                    <div class="overlay"></div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="about-wrap">
+                    <h2>Chào mừng đến với cửa hàng giày của chúng tôi !</h2>
+                    <p>Chúng tôi cung cấp một loạt các sản phẩm giày đa dạng, từ giày thể thao cho đến giày công sở và giày sandal. Với mục đích mang lại sự thoải mái và phong cách cho khách hàng của chúng tôi, chúng tôi cam kết chất lượng sản phẩm cao cấp và giá cả cạnh tranh.</p>
+                    <p>Chúng tôi luôn cập nhật những mẫu giày mới nhất từ các thương hiệu nổi tiếng và độc quyền chỉ có tại trang web của chúng tôi. Bên cạnh đó, chúng tôi còn có chính sách đổi trả hàng linh hoạt và dịch vụ khách hàng tận tình để đảm bảo sự hài lòng của khách hàng.</p>
+                    <p>Hãy khám phá ngay bộ sưu tập giày của chúng tôi và tìm kiếm cho mình một đôi giày phù hợp với phong cách của bạn!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

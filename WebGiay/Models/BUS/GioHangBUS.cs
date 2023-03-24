@@ -57,7 +57,7 @@ namespace WebGiay.Models.BUS
         {
             using (var db = new ShopOnlineConnectionDB())
             {
-                var a = db.Query<GioHang>("select * from GioHang where MaSanPham = '" + masanpham + "' and MaTaiKhoan = '" + mataikhoan + "'");
+                var a = db.Query<GioHang>("select * from GioHang where MaSanPham='" + masanpham + "' and MaTaiKhoan='" + mataikhoan + "'").FirstOrDefault();
                 db.Delete(a);
             }
         }
