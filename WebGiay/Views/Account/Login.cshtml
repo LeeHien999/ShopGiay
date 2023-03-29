@@ -3,7 +3,73 @@
 @{
     ViewBag.Title = "Log in";
 }
+<style>
 
+    h4 {
+        text-align: center;
+    }
+
+    h2 {
+        padding-left: 30%;
+    }
+
+    #loginForm {
+        height: 450px;
+        position: relative;
+        width: 50%;
+        margin: auto;
+        border: 3px solid #000000;
+        border-radius: 20px;
+    }
+
+    .form-group {
+        padding-top: 20px;
+        font-weight: bold;
+        display: flex;
+    }
+
+        .form-group .labels {
+            width: 20%;
+            font-size: 13px;
+        }
+
+            .form-group .labels.setting {
+                margin-right: 5%;
+            }
+
+        .form-group.btn {
+            margin: auto;
+            padding-left: 15%;
+            width: 100%;
+        }
+
+        .form-group.checkbox {
+            width: 100%;
+            margin-left: 30px;
+        }
+
+    .col-md-10 {
+        width: 80%;
+        color: black;
+    }
+
+    .form-group.checkbox p {
+        font-size: 13px;
+        text-decoration: underline;
+        float: right;
+        padding-left: 50px;
+    }
+
+    .regiser {
+        font-size: 13px;
+        font-weight: bold;
+        display: flex;
+        color: black;
+        width: 100%;
+        margin: auto;
+        padding-left: 30%;
+    }
+</style>
 <h2>@ViewBag.Title.</h2>
 <div class="row">
     <div class="col-md-8">
@@ -28,22 +94,32 @@
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="form-group">
+
+                <div class="form-group checkbox">
                     <div class="col-md-offset-2 col-md-10">
                         <div class="checkbox">
                             @Html.CheckBoxFor(m => m.RememberMe)
                             @Html.LabelFor(m => m.RememberMe)
+                            <p>Fogot Password?</p>
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+
+                <div class="form-group btn">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Log in" class="btn btn-default" />
+
                     </div>
                 </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
+                <div class="regiser">
+                    <p>
+                        Don't have an account?
+                    </p>
+                    <p style="padding-left:10px">
+                        @Html.ActionLink("Register", "Register")
+                    </p>
+                </div>
+
                 @* Enable this once you have account confirmation enabled for password reset functionality
                     <p>
                         @Html.ActionLink("Forgot your password?", "ForgotPassword")
@@ -57,7 +133,6 @@
         </section>
     </div>
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

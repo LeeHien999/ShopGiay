@@ -1,4 +1,5 @@
-﻿using ShopOnlineConnection;
+﻿using PagedList;
+using ShopOnlineConnection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,10 @@ namespace WebGiay.Areas.Admin.Controllers
     {
         [Authorize(Roles = "Admin")]
         // GET: Admin/LoaiSanPham2
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pagesize = 8)
         {
             var db = LoaiSanPhamBUS.DanhSachAdmin();
-            return View(db);
+            return View(db.ToPagedList(page, pagesize));
         }
 
         // GET: Admin/LoaiSanPham2/Details/5

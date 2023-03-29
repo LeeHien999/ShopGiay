@@ -1,10 +1,10 @@
-﻿@model PagedList.IPagedList<ShopOnlineConnection.NhaSanXuat>
-@using PagedList.Mvc;
+﻿@model IEnumerable<ShopOnlineConnection.AspNetUser>
+@using Microsoft.AspNet.Identity;
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_MainAdminLayout.cshtml";
 }
-
 
 
 <head>
@@ -21,7 +21,6 @@
             width: 100%;
             border-collapse: collapse;
         }
-
             .product-table tr {
                 border-bottom: 1px solid #ccc;
             }
@@ -86,16 +85,18 @@
 </head>
 
 <div class="table-container">
-    <h2>Quản lý nhà sản xuất</h2>
+    <h2>Quản lý Khách hàng</h2>
     <div class="add-product">
-        <a href="@Url.Action("Create", "NhaSanXuat2")"><i class="fas fa-plus"></i> Add</a>
+        <a href="@Url.Action("Create","NhaSanXuat2")">Thêm Khách hàng</a>
     </div>
     <table class="product-table">
         <thead>
             <tr>
-                <th>Mã NSX</th>
-                <th>Tên Nhà Sản Xuất</th>
-                <th>Tình trạng</th>
+                <th>ID</th>
+                <th>Tên Khách Hàng</th>
+                <th>Email</th>
+                <th style="width: 10%;">Emal Confirm</th>
+                <th>Khóa</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -103,46 +104,36 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.MaNhaSanXuat</td>
-                    <td>@item.TenNhaSanXuat</td>
-                    <td>@item.TinhTrang</td>
+                    @{ 
+                        String UserName = item.UserName.Split('@')[0];
+                    }
+                    <td><input value="@item.Id" readonly style="width: 150px"/></td>
+                    <td>@UserName</td>
+                    <td>@item.Email</td>
+                    <td style="text-align: center;">@item.EmailConfirmed</td>
+                    @{
+                        var status = "";
+                        if (item.LockoutEnabled && item.LockoutEndDateUtc != null)
+                        {
+                            status = "Khóa";
+                        }
+                        else
+                        {
+                            status = "Mở khóa";
+                        }
+
+                    }
+                    <td>@status</td>
                     <td>
-                        <a href="@Url.Action("Edit","NhaSanXuat2",new {id = @item.MaNhaSanXuat})" class="edit-btn"><i class="fas fa-edit"></i></a>
-                        <a href="@Url.Action("XoaTamThoi","NhaSanXuat2",new {id = @item.MaNhaSanXuat})" class="delete-btn"><i class="fas fa-trash"></i></a>
+                        <a href="@Url.Action("Edit","NhaSanXuat2",new {id = @item.Id})" class="edit-btn"><i class="fas fa-edit"></i></a>
+                        <a href="@Url.Action("Khoa","NhaSanXuat2",new {id = @item.Id})" class="delete-btn"><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>
             }
 
-
         </tbody>
     </table>
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <div class="block-27">
-                <ul>
-                    <li>@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))</li>
-                </ul>
 
-            </div>
-        </div>
-    </div>
 </div>
 
-<!-- Animate.css -->
-<link rel="stylesheet" href="/Asset/css/animate.css">
-<!-- Bootstrap  -->
-<link rel="stylesheet" href="/Asset/css/bootstrap.min.css">
-<!-- Magnific Popup -->
-<link rel="stylesheet" href="/Asset/css/magnific-popup.css">
-<!-- Flexslider  -->
-<link rel="stylesheet" href="/Asset/css/flexslider.css">
-<!-- Owl Carousel -->
-<link rel="stylesheet" href="/Asset/css/owl.carousel.min.css">
-<link rel="stylesheet" href="/Asset/css/owl.theme.default.min.css">
 
-<!-- Date Picker -->
-<link rel="stylesheet" href="/Asset/css/bootstrap-datepicker.css">
-<!-- Flaticons  -->
-<link rel="stylesheet" href="/Asset/fonts/flaticon/font/flaticon.css">
-<!-- Theme style  -->
-<link rel="stylesheet" href="/Asset/css/style.css">

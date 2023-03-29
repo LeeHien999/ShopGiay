@@ -22,29 +22,16 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-7 col-md-9">
-                            <div id="colorlib-logo"><a href="index.html">Footwear</a></div>
+                            <div id="colorlib-logo">@Html.ActionLink("FootWear", "Index", "Home")</div>
                         </div>
-                        <div class="col-sm-5 col-md-3">
-                            <form action="#" class="search-wrap">
-                                <div class="form-group">
-                                    <input type="search" class="form-control search" placeholder="Search">
-                                    <button class="btn btn-primary submit-search text-center" type="submit"><i class="icon-search"></i></button>
-                                </div>
-                            </form>
-                        </div>
+                        
                     </div>
                     <div class="row">
                         <div class="col-sm-12 text-left menu-1">
                             <ul>
                                 <li class="has-dropdown">
                                     @Html.ActionLink("Home", "Index", "Home")
-                                    <ul class="dropdown">
-
-                                        <li><a href="cart.html">Shopping Cart</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="order-complete.html">Order Complete</a></li>
-                                        <li><a href="add-to-wishlist.html">Wishlist</a></li>
-                                    </ul>
+                                    
                                 </li>
                                 @Html.Partial("_NhaSanXuat", WebGiay.Models.BUS.NhaSanXuatBUS.DanhSach())
                                 @Html.Partial("_LoaiSanPham", WebGiay.Models.BUS.LoaiSanPhamBUS.DanhSach())
