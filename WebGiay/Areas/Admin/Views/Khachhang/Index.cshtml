@@ -1,5 +1,6 @@
-﻿@model IEnumerable<ShopOnlineConnection.AspNetUser>
+﻿@model PagedList.IPagedList<ShopOnlineConnection.AspNetUser>
 @using Microsoft.AspNet.Identity;
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -20,7 +21,9 @@
         .product-table {
             width: 100%;
             border-collapse: collapse;
+            margin-bottom: 20px;
         }
+
             .product-table tr {
                 border-bottom: 1px solid #ccc;
             }
@@ -104,10 +107,10 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    @{ 
+                    @{
                         String UserName = item.UserName.Split('@')[0];
                     }
-                    <td><input value="@item.Id" readonly style="width: 150px"/></td>
+                    <td><input value="@item.Id" readonly style="width: 150px" /></td>
                     <td>@UserName</td>
                     <td>@item.Email</td>
                     <td style="text-align: center;">@item.EmailConfirmed</td>
@@ -125,15 +128,25 @@
                     }
                     <td>@status</td>
                     <td>
-                        <a href="@Url.Action("Edit","NhaSanXuat2",new {id = @item.Id})" class="edit-btn"><i class="fas fa-edit"></i></a>
-                        <a href="@Url.Action("Khoa","NhaSanXuat2",new {id = @item.Id})" class="delete-btn"><i class="fas fa-trash"></i></a>
+                        <a href="@Url.Action("Edit","Khachhang",new {id = @item.Id})" class="edit-btn"><i class="fas fa-edit"></i></a>
+                        <a href="@Url.Action("KhoaTaiKhoan","Khachhang", new {id = @item.Id})" onclick="return confirm('Bạn có chắc chắn muốn khóa khách hàng này?');" class="delete-btn"><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>
             }
 
         </tbody>
     </table>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <div class="block-27">
+                <ul>
+                    <li>@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))</li>
+                </ul>
 
+            </div>
+        </div>
+    </div>
 </div>
+
 
 

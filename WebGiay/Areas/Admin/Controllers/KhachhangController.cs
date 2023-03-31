@@ -1,20 +1,27 @@
-﻿using System;
+﻿using ShopOnlineConnection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebGiay.Models.BUS;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using System.Threading.Tasks;
+using PagedList;
 
 namespace WebGiay.Areas.Admin.Controllers
 {
     public class KhachhangController : Controller
     {
         // GET: Admin/Khachhang
-        public ActionResult Index()
+        public ActionResult Index(int Page = 1, int PageZise = 8)
         {
+
             var db = KhachHangBUS.DanhSach();
-            return View(db);
+            return View(db.ToPagedList(Page, PageZise));
         }
+
 
         // GET: Admin/Khachhang/Details/5
         public ActionResult Details(int id)
@@ -45,19 +52,19 @@ namespace WebGiay.Areas.Admin.Controllers
         }
 
         // GET: Admin/Khachhang/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            var db = KhachHangBUS.ChiTietKH(id);
+            return View(db);
         }
 
         // POST: Admin/Khachhang/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(string id, AspNetUser kh)
         {
             try
-            {
-                // TODO: Add update logic here
-
+            {              
+                KhachHangBUS.Update(id, kh);
                 return RedirectToAction("Index");
             }
             catch
@@ -66,10 +73,23 @@ namespace WebGiay.Areas.Admin.Controllers
             }
         }
 
-        // GET: Admin/Khachhang/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult KhoaTaiKhoan(string id)
         {
-            return View();
+            AspNetUser kh = KhachHangBUS.ChiTietKH(id);
+
+            // Cập nhật thông tin khóa người dùng vào CSDL
+            kh.LockoutEndDateUtc = DateTimeOffset.MaxValue.UtcDateTime;
+            KhachHangBUS.Update(id, kh);
+            return RedirectToAction("Index");
+        }
+
+        
+
+        // GET: Admin/Khachhang/Delete/5
+        public ActionResult Delete(string id)
+        {
+            KhachHangBUS.Delete(id);
+            return RedirectToAction("Index");
         }
 
         // POST: Admin/Khachhang/Delete/5

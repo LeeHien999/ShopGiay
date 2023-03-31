@@ -1,0 +1,55 @@
+﻿@model ShopOnlineConnection.AspNetUser
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_MainAdminLayout.cshtml";
+}
+
+<style>
+    .container {
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+    }
+</style>
+
+<div class="container">
+    <h2>Chỉnh sửa tài khoản khách hàng</h2>
+    @using (Html.BeginForm("Edit", "Khachhang", FormMethod.Post))
+    {
+        <div class="form-group">
+            <label for="ma-nsx">Id Khách hàng</label>
+            <input type="text" class="form-control" id="ma-kh" name="Id" value="@Model.Id" readonly>
+        </div>
+        <div class="form-group">
+            <label for="ten-nsx">Email Khách hàng:</label>
+            <input type="text" class="form-control" id="ten-nsx" placeholder="Nhập gmail khách hàng" name="Email" required value="@Model.Email">
+        </div>
+        <div class="form-group">
+            <label for="tinh-trang">Tình trạng:</label>
+            <select class="form-control" id="tinh-trang" name="LockoutEndDateUtc" required>
+                @if (Model.LockoutEnabled && Model.LockoutEndDateUtc != null)
+                {
+                    <option value="NULL">Mở khóa</option>
+                    <option value="@Model.LockoutEndDateUtc" selected>Khóa</option>
+                }
+                else
+                {
+                    <option value="NULL" selected>Mở khóa</option>
+                    <option value="@DateTimeOffset.MaxValue.UtcDateTime">Khóa</option>
+                }
+            </select>
+            <input type="text" name="EmailConfirm" value="@Model.EmailConfirmed" hidden>
+            <input type="text" name="PasswordHash" value="@Model.PasswordHash" hidden>
+            <input type="text" name="SecurityStamp" value="@Model.SecurityStamp" hidden>
+            <input type="text" name="PhoneNumber" value="@Model.PhoneNumber" hidden>
+            <input type="text" name="PhoneNumberConfirmed" value="@Model.PhoneNumberConfirmed" hidden>
+            <input type="text" name="LockoutEnabled" value="@Model.LockoutEnabled" hidden>
+            <input type="text" name="TwoFactorEnabled" value="@Model.TwoFactorEnabled" hidden>
+            <input type="text" name="AccessFailedCount" value="@Model.AccessFailedCount" hidden>
+            <input type="text" name="UserName" value="@Model.UserName" hidden>
+        </div>
+        <button type="submit" class="btn btn-primary">Lưu</button>
+    }
+</div>
+
+
