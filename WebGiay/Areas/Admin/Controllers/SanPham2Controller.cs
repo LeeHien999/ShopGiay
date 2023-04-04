@@ -140,6 +140,8 @@ namespace WebGiay.Areas.Admin.Controllers
                     model.Hinh3 = oldModel.Hinh3;
                     model.Hinh4 = oldModel.Hinh4;
                 }
+                model.SoLuongDaBan = oldModel.SoLuongDaBan;
+                model.LuotView = oldModel.SoLuongDaBan;
                 // Lưu đối tượng sản phẩm vào cơ sở dữ liệu
                 ShopOnlineBUS.UpdateSP(id, model);
                 return RedirectToAction("Index");

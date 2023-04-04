@@ -79,6 +79,7 @@ namespace WebGiay.Areas.Admin.Controllers
 
             // Cập nhật thông tin khóa người dùng vào CSDL
             kh.LockoutEndDateUtc = DateTimeOffset.MaxValue.UtcDateTime;
+            kh.LockoutEnabled = true;
             KhachHangBUS.Update(id, kh);
             return RedirectToAction("Index");
         }

@@ -168,6 +168,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Code\Product.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -2013,6 +2014,18 @@
     <Content Include="Asset\images\brand-4.jpg" />
     <Content Include="Asset\images\brand-5.jpg" />
     <Content Include="Asset\images\cover-img-1.jpg" />
+    <Content Include="Asset\images\giayadidas1.jpg" />
+    <Content Include="Asset\images\giayadidas2.jpg" />
+    <Content Include="Asset\images\giayadidas3.jpg" />
+    <Content Include="Asset\images\giayadidas4.jpg" />
+    <Content Include="Asset\images\giayadidas5.jpg" />
+    <Content Include="Asset\images\giayadidas6.jpg" />
+    <Content Include="Asset\images\giayadidas7.jpg" />
+    <Content Include="Asset\images\giayguccinu1.png" />
+    <Content Include="Asset\images\giaynike1.png" />
+    <Content Include="Asset\images\giaynike2.jpg" />
+    <Content Include="Asset\images\giaynike3.png" />
+    <Content Include="Asset\images\giaynike4.jpg" />
     <Content Include="Asset\images\img_bg_1.jpg" />
     <Content Include="Asset\images\img_bg_2.jpg" />
     <Content Include="Asset\images\img_bg_3.jpg" />
@@ -2023,6 +2036,7 @@
     <Content Include="Asset\images\person2.jpg" />
     <Content Include="Asset\images\person3.jpg" />
     <Content Include="Asset\images\women.jpg" />
+    <Content Include="Asset\images\logo.jpg" />
     <Content Include="Asset\js\aos.js" />
     <Content Include="Asset\js\bootstrap-datepicker.js" />
     <Content Include="Asset\js\bootstrap.min.js" />
@@ -3275,6 +3289,7 @@
     <Content Include="Areas\Admin\Views\SanPham2\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Khachhang\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Khachhang\Edit.cshtml" />
+    <Content Include="Asset\images\giaynike1.webp" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -3335,6 +3350,7 @@
     <Content Include="Views\Shared\_NhaSanXuat.cshtml" />
     <Content Include="Views\Shared\_Top4New.cshtml" />
     <Content Include="Views\GioHang\Index.cshtml" />
+    <Content Include="Views\GioHang\CheckOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

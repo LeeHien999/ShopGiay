@@ -5,7 +5,6 @@
 }
 
 
-
 <div class="breadcrumbs">
     <div class="container">
         <div class="row">
@@ -54,10 +53,10 @@
                     <div class="one-eight text-center px-4">
                         <span>Remove</span>
                     </div>
-                </div>
+                </div>            
 
                 @foreach (var item in Model)
-                {
+                                                {
                 <div class="product-cart d-flex">
                     <div class="one-forth">
                         <div class="product-img" style="background-image: url(/Asset/images/@WebGiay.Models.BUS.ShopOnlineBUS.LoadAvatar(item.MaSanPham.ToString()).HinhChinh);">
@@ -69,35 +68,35 @@
 
                     <div class="one-eight text-center">
                         <div class="display-tc">
-                            <span class="price">@String.Format("{0:#,##0.##} đ", (decimal)item.Gia)</span>
+                            <span class="price">@String.Format("{0:#,##0.##} đ", (decimal) item.Gia)</span>
                         </div>
                     </div>
                     @using (Html.BeginForm("CapNhat", "GioHang"))
-                    {
-                        <div class="one-eight text-center">
-                            <div class="display-tc">
-                                <input type="hidden" name="Gia" value="@item.Gia" />
-                                <input type="hidden" name="MaSanPham" value="@item.MaSanPham" />
-                                <input type="number" id="quantity" name="SoLuong" class="form-control input-number text-center" value="@item.SoLuong" min="1" max="100">
+                                                            {
+                    <div class="one-eight text-center">
+                        <div class="display-tc">
+                            <input type="hidden" name="Gia" value="@item.Gia" />
+                            <input type="hidden" name="MaSanPham" value="@item.MaSanPham" />
+                            <input type="number" id="quantity" name="SoLuong" class="form-control input-number text-center" value="@item.SoLuong" min="1" max="100">
 
-                            </div>
                         </div>
-                        <div class="one-eight text-center">
-                            <div class="display-tc">
-                                <span class="price" mane="TongTien">@String.Format("{0:#,##0.##} đ", (decimal)item.TongTien)</span>
-                            </div>
+                    </div>
+                    <div class="one-eight text-center">
+                        <div class="display-tc">
+                            <span class="price" mane="TongTien">@String.Format("{0:#,##0.##} đ", (decimal) item.TongTien)</span>
                         </div>
-                        //nút cập nhật ở đây nhưng ẩn cho nó đẹp khi cần cập nhật lại số lượng chỉ cần nhấn enter sau khi nhập xong
-                        <input type="submit" id="submit-button" hidden>
-                    }
+                    </div>
+                    //nút cập nhật ở đây nhưng ẩn cho nó đẹp khi cần cập nhật lại số lượng chỉ cần nhấn enter sau khi nhập xong
+                    <input type="submit" id="submit-button" hidden>
+}
                     <div class="one-eight text-center">
                         <div class="display-tc">
                             <a href="@Url.Action("Xoa", "GioHang", new {masanpham = item.MaSanPham})" class="closed"></a>
                         </div>
                     </div>
-                    
+
                 </div>
-                }
+                                                }
                 <div class="col-sm-3">
                     <a href="@Url.Action("Index", "Shop")" class="btn btn-primary">Tiếp tục mua hàng</a>
                 </div>
@@ -122,70 +121,19 @@
                         <div class="col-sm-4 text-center">
                             <div class="total">
                                 <div class="sub">
-                                    <p><span>Subtotal:</span> <span>@String.Format("{0:#,##0.##} đ", (decimal)ViewBag.TongTien)</span></p>
+                                    <p><span>Subtotal:</span> <span>@String.Format("{0:#,##0.##} đ", (decimal) ViewBag.TongTien)</span></p>
                                     <p><span>Delivery:</span> <span>0đ</span></p>
                                     <p><span>Discount:</span> <span>0đ</span></p>
                                 </div>
                                 <div class="grand-total">
-                                    <p><span><strong>Total:</strong></span> <span>@String.Format("{0:#,##0.##} đ", (decimal)ViewBag.TongTien)</span></p>
+                                    <p><span><strong>Total:</strong></span> <span>@String.Format("{0:#,##0.##} đ", (decimal) ViewBag.TongTien)</span></p>
                                 </div>
                                 <div class="col-sm-3">
-                                    <a class="btn btn-primary">Check Out</a>
+                                    <a class="btn btn-primary" href="@Url.Action("CheckOut", "GioHang")">Check Out</a>
                                 </div>
                             </div>
-                            
+
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
-                <h2>Related Products</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-lg-3 mb-4 text-center">
-                <div class="product-entry border">
-                    <a href="#" class="prod-img">
-                        <img src="images/item-1.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                    </a>
-                    <div class="desc">
-                        <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-                        <span class="price">$139.00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-lg-3 mb-4 text-center">
-                <div class="product-entry border">
-                    <a href="#" class="prod-img">
-                        <img src="images/item-2.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                    </a>
-                    <div class="desc">
-                        <h2><a href="#">Women's Minam Meaghan</a></h2>
-                        <span class="price">$139.00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-lg-3 mb-4 text-center">
-                <div class="product-entry border">
-                    <a href="#" class="prod-img">
-                        <img src="images/item-3.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                    </a>
-                    <div class="desc">
-                        <h2><a href="#">Men's Taja Commissioner</a></h2>
-                        <span class="price">$139.00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-lg-3 mb-4 text-center">
-                <div class="product-entry border">
-                    <a href="#" class="prod-img">
-                        <img src="images/item-4.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                    </a>
-                    <div class="desc">
-                        <h2><a href="#">Russ Men's Sneakers</a></h2>
-                        <span class="price">$139.00</span>
                     </div>
                 </div>
             </div>

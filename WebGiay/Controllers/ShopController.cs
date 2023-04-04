@@ -11,8 +11,13 @@ namespace WebGiay.Controllers
     public class ShopController : Controller
     {
         // GET: Shop
-        public ActionResult Index(int page = 1, int pagesize = 8)
+        public ActionResult Index(int page = 1, int pagesize = 8, string SearchString = "")
         {
+            if (SearchString != "")
+            {
+                var db2 = ShopOnlineBUS.SearchSP(SearchString);
+                return View(db2.ToPagedList(page, pagesize));
+            }
             var db = ShopOnlineBUS.DanhSach().ToPagedList(page, pagesize);
             return View(db);
         }

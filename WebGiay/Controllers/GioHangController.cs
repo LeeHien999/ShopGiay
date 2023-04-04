@@ -72,6 +72,26 @@ namespace WebGiay.Controllers
             }
         }
 
+        public ActionResult CheckOut()
+        {
+            return View();
+        }
+
+        // POST: GioHang/Create
+        [HttpPost]
+        public ActionResult CheckOut(FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
         // GET: GioHang/Details/5
         public ActionResult Details(int id)

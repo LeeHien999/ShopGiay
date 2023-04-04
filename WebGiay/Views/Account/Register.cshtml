@@ -4,9 +4,24 @@
 }
 <style>
 
+
     h4, h2 {
         text-align: center;
     }
+
+    .remember-forgot {
+        font-size: .9em;
+        color: black;
+        font-weight: 500;
+        margin: -15px 0 15px;
+        display: flex;
+        margin: 40px 0 0 20px;
+    }
+
+        .remember-forgot label input {
+            accent-color: #0000;
+            margin-right: 5px;
+        }
 
     .centers {
         height: 400px;
@@ -42,14 +57,24 @@
         width: 80%;
         color: black;
     }
+
+    .login {
+        font-size: 13px;
+        font-weight: bold;
+        display: flex;
+        color: black;
+        width: 100%;
+        margin: auto;
+        padding-left: 35%;
+    }
 </style>
 <h2>@ViewBag.Title.</h2>
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
+    <h4>TẠO TÀI KHOẢN MỚI</h4>
     <hr />
-    <div class="centers">
+    <div class="centers" style="max-width: 35%; height: 450px;">
         @Html.ValidationSummary("", new { @class = "text-danger" })
         <div class="form-group">
             <div class="labels setting">
@@ -58,8 +83,8 @@
             <div class="col-md-10">
                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
             </div>
-        </div>
 
+        </div>
         <div class="form-group">
             <div class="labels">
                 @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
@@ -76,10 +101,24 @@
                 @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
             </div>
         </div>
+        <div class="remember-forgot">
+            <label for="#">
+                <input type="checkbox">I agree to the terms
+                & conditions
+            </label>
+        </div>
         <div class="form-group btn">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" class="btn btn-default" value="Register" />
             </div>
+        </div>
+        <div class="login">
+            <p>
+                Already have an account?
+            </p>
+            <p style="padding-left:10px">
+                @Html.ActionLink("Login", "Login")
+            </p>
         </div>
     </div>
 

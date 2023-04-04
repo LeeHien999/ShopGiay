@@ -22,7 +22,7 @@ namespace WebGiay.Models.BUS
         public static IEnumerable<SanPham> Top4New()
         {
             var db = new ShopOnlineConnectionDB();
-            return db.Query<SanPham>("Select Top 4 * from SanPham where GhiChu = N'New' and LuotView < 1000 and TinhTrang = 0");
+            return db.Query<SanPham>("Select Top 4 * from SanPham where lower(GhiChu) like '%new%' and LuotView < 1000 and TinhTrang = 0");
         }
 
         public static IEnumerable<SanPham> BestSeller()
@@ -37,6 +37,7 @@ namespace WebGiay.Models.BUS
             var db = new ShopOnlineConnectionDB();
             return db.SingleOrDefault<NhaSanXuat>("Select * from NhaSanXuat where MaNhaSanXuat = " + id + "");
         }
+        
 
         public static SanPham LoadAvatar(String id)
         {
@@ -60,6 +61,12 @@ namespace WebGiay.Models.BUS
         {
             var db = new ShopOnlineConnectionDB();
             db.Update(sp, id);
+        }
+
+        public static IEnumerable<SanPham>SearchSP(string srt)
+        {
+            var db = new ShopOnlineConnectionDB();
+            return db.Query<SanPham>("select * from SanPham where Lower(TenSanPham) like '%" + srt + "%'");
         }
     }
 }

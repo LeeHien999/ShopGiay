@@ -2,7 +2,19 @@
 @{
     ViewBag.Title = "_MainLayout";
 }
+<style>
+    .top-menu {
+        padding: 0;
+        position: relative;
+    }
 
+    .container {
+    }
+
+    .row {
+        margin-left: 100px;
+    }
+</style>
 <!DOCTYPE HTML>
 <html>
 @{
@@ -19,27 +31,20 @@
     <div id="page">
         <nav class="colorlib-nav" role="navigation">
             <div class="top-menu">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-7 col-md-9">
-                            <div id="colorlib-logo">@Html.ActionLink("FootWear", "Index", "Home")</div>
+                <div class="container" style=" margin-left: 0x; padding: 0; max-width: 100%; display: flex; justify-content: space-around;">
+                    <div class="row" style=" display: block; width: 250px; transform: scale(1.3,1.1);">
+                        <div class="col-sm-7 col-md-9" ">
+                            <div id="colorlib-logo">@Html.ActionLink("𝕾5-𝕾𝖙𝖞𝖑𝖊", "Index", "Home")</div>
                         </div>
-                        <div class="col-sm-5 col-md-3">
-                            <form action="#" class="search-wrap">
-                                <div class="form-group">
-                                    <input type="search" class="form-control search" placeholder="Search">
-                                    <button class="btn btn-primary submit-search text-center" type="submit"><i class="icon-search"></i></button>
-                                </div>
-                            </form>
-                        </div>
+
                     </div>
 
-                    <div class="row">
+                    <div class="row" style="font-size: 17px; ">
                         <div class="col-sm-12 text-left menu-1">
                             <ul>
                                 <li class="has-dropdown">
                                     @Html.ActionLink("Home", "Index", "Home")
-                                    
+
                                 </li>
                                 @Html.Partial("_NhaSanXuat", WebGiay.Models.BUS.NhaSanXuatBUS.DanhSach())
                                 @Html.Partial("_LoaiSanPham", WebGiay.Models.BUS.LoaiSanPhamBUS.DanhSach())
@@ -74,8 +79,18 @@
 
                                     var gioHang = WebGiay.Models.BUS.GioHangBUS.DanhSach(User.Identity.GetUserId());
                                 }
-                                <li class="cart"><a href="@Url.Action("Index", "GioHang")"><i class="icon-shopping-cart"></i> Cart [@gioHang.Count()]</a></li>
+                                <li class="cart" style="margin-top:4px"><a href="@Url.Action("Index", "GioHang")"><i class="icon-shopping-cart"></i> Cart [@gioHang.Count()]</a></li>
                             </ul>
+                        </div>
+                    </div>
+                    <div class="row" style="transform: scale(1.3,1.1); margin-top: 14px;">
+                        <div class="col-sm-5 col-md-3" style="max-width: 100%; flex: 0 0 100% ">                          
+                            <form action="@Url.Action("Index", "Shop")" class="search-wrap" method="GET">
+                                <div class="form-group">
+                                    <input type="search" class="form-control search" name="SearchString" placeholder="Search">
+                                    <button class="btn btn-primary submit-search text-center" type="submit"><i class="icon-search"></i></button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -88,12 +103,12 @@
                                 <div class="owl-carousel2">
                                     <div class="item">
                                         <div class="col">
-                                            <h3><a href="#">25% off (Almost) Everything! Use Code: Summer Sale</a></h3>
+                                            <h3><a href="#">CHÀO MỪNG CÁC BẠN ĐÃ ĐẾN VỚI SHOP--S5-STYLE</a></h3>
                                         </div>
                                     </div>
                                     <div class="item">
                                         <div class="col">
-                                            <h3><a href="#">Our biggest sale yet 50% off all summer shoes</a></h3>
+                                            <h3><a href="#">THẾ GIỚI GIÀY PHONG CÁCH LỬA CHÙA</a></h3>
                                         </div>
                                     </div>
                                 </div>
