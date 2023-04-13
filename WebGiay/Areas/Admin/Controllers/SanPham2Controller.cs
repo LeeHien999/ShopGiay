@@ -140,8 +140,23 @@ namespace WebGiay.Areas.Admin.Controllers
                     model.Hinh3 = oldModel.Hinh3;
                     model.Hinh4 = oldModel.Hinh4;
                 }
-                model.SoLuongDaBan = oldModel.SoLuongDaBan;
-                model.LuotView = oldModel.SoLuongDaBan;
+                if (model.SoLuongDaBan > 1000)
+                {
+                    model.SoLuongDaBan = 0;
+                }
+                else
+                {
+                    model.SoLuongDaBan = oldModel.SoLuongDaBan;
+                }
+               if (model.LuotView > 1000)
+                {
+                    model.SoLuongDaBan = 0;
+                }
+               else
+                {
+                    model.LuotView = oldModel.SoLuongDaBan;
+                }
+               
                 // Lưu đối tượng sản phẩm vào cơ sở dữ liệu
                 ShopOnlineBUS.UpdateSP(id, model);
                 return RedirectToAction("Index");
@@ -212,17 +227,8 @@ namespace WebGiay.Areas.Admin.Controllers
                 else
                     model.TinhTrang = "1";
 
-
-                if (model.LuotView > 10000)
-                    model.LuotView = 0;
-                else
-                    model.LuotView = 0; //tránh tình trạng trả về null gây lỗi 
-
-                if (model.SoLuongDaBan > 10000)
-                    model.SoLuongDaBan = 0;
-                else
-                    model.SoLuongDaBan = 0;
-
+                model.SoLuongDaBan = oldModel.SoLuongDaBan;
+                model.LuotView = oldModel.LuotView;
                 ShopOnlineBUS.UpdateSP(id, model);
                 return RedirectToAction("Index");
             }

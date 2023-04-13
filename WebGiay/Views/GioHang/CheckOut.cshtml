@@ -1,8 +1,26 @@
-﻿
+﻿@model IEnumerable<ShopOnlineConnection.GioHang>
+@using Microsoft.AspNet.Identity;
+@using ShopOnlineConnection;
+@using WebGiay.Models.BUS;
+@using System.Web.Script.Serialization;
+
 @{
     ViewBag.Title = "CheckOut";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
+
+
+<style>
+    table {
+        border-collapse: separate;
+        border-spacing: 0 10px;
+    }
+
+    td {
+        padding: 5px;
+    }
+</style>
+
 
 <div class="breadcrumbs">
     <div class="container">
@@ -14,6 +32,39 @@
     </div>
 </div>
 
+@{
+    List<ChiTietDonHang> chitetdonhang = new List<ChiTietDonHang>();
+   
+}
+<table hidden>
+
+    <tr>
+        <td>Subtotal</td>
+        <td>@String.Format("{0:#,##0.##}đ", (decimal)ViewBag.TongTien)</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.SoLuong x @item.TenSanPham</td>
+            <td>@String.Format("{0:#,##0.##}đ", (decimal)item.TongTien)</td>
+        </tr>
+        var sp = ShopOnlineBUS.LayThongTinMaSanPham(item.TenSanPham);
+        chitetdonhang.Add(new ChiTietDonHang
+        {
+            IdSanPham = sp.MaSanPham,
+            SoLuong = item.SoLuong,
+            Gia = item.Gia,
+        });
+    }
+    <tr>
+        <td>Shipping</td>
+        <td>0 đ</td>
+    </tr>
+    <tr>
+        <td>Order Total</td>
+        <td>@String.Format("{0:#,##0.##}đ", (decimal)ViewBag.TongTien)</td>
+    </tr>
+</table>
 
 <div class="colorlib-product">
     <div class="container">
@@ -37,164 +88,108 @@
         </div>
         <div class="row">
             <div class="col-lg-8">
-                <form method="post" class="colorlib-form">
+
+                @using (Html.BeginForm("CheckOut", "GioHang", FormMethod.Post))
+                {
+
                     <h2>Billing Details</h2>
                     <div class="row">
+                        <input name="iduser" value="@User.Identity.GetUserId()" hidden />
+                        <input name="tongdonhang" value="@ViewBag.TongTien" hidden />
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="country">Select Country</label>
-                                <div class="form-field">
-                                    <i class="icon icon-arrow-down3"></i>
-                                    <select name="people" id="people" class="form-control">
-                                        <option value="#">Select country</option>
-                                        <option value="#">Alaska</option>
-                                        <option value="#">China</option>
-                                        <option value="#">Japan</option>
-                                        <option value="#">Korea</option>
-                                        <option value="#">Philippines</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="fname">First Name</label>
-                                <input type="text" id="fname" class="form-control" placeholder="Your firstname">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="lname">Last Name</label>
-                                <input type="text" id="lname" class="form-control" placeholder="Your lastname">
+                                <label for="Na">Tên Khách hàng</label>
+                                <input type="text" name="tennguoinhan" class="form-control" placeholder="Tên Khách hàng" required>
                             </div>
                         </div>
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="companyname">Company Name</label>
-                                <input type="text" id="companyname" class="form-control" placeholder="Company Name">
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="fname">Address</label>
-                                <input type="text" id="address" class="form-control" placeholder="Enter Your Address">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="address2" class="form-control" placeholder="Second Address">
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="companyname">Town/City</label>
-                                <input type="text" id="towncity" class="form-control" placeholder="Town or City">
+                                <label for="fname">Địa chỉ</label>
+                                <input type="text" id="DiaChi" name="diachi" class="form-control" placeholder="Địa chỉ giao hàng" required>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="stateprovince">State/Province</label>
-                                <input type="text" id="fname" class="form-control" placeholder="State Province">
+                                <label for="email">E-mail</label>
+                                <input type="text" id="email" name="email" class="form-control" placeholder="Email" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="lname">Zip/Postal Code</label>
-                                <input type="text" id="zippostalcode" class="form-control" placeholder="Zip / Postal">
+                                <label for="Phone">Số điện thoại</label>
+                                <input type="text" id="zippostalcode" name="sdt" class="form-control" placeholder="Số điện thoại" required>
                             </div>
                         </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="email">E-mail Address</label>
-                                <input type="text" id="email" class="form-control" placeholder="State Province">
-                            </div>
+                        <div class="form-group">
+                            <label>Payment: </label>
+                            <select class="form-control" name="hinhthucthanhtoan" required>
+                                <option value="COD">COD</option>
+                            </select>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="Phone">Phone Number</label>
-                                <input type="text" id="zippostalcode" class="form-control" placeholder="">
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <div class="radio">
-                                    <label><input type="radio" name="optradio"> Create an Account? </label>
-                                    <label><input type="radio" name="optradio"> Ship to different address</label>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="" required> I have read and accept the terms and conditions</label>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
+                     JavaScriptSerializer serializer = new JavaScriptSerializer();
+                     string json = serializer.Serialize(chitetdonhang);              
+                    <input name="chitietdonhang" value="@json" hidden />
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <p><input class="btn btn-primary" type="submit" value="Place an order" onclick="submitAllForm()" /></p>
+                        </div>
+                    </div>
+
+                }
+
             </div>
 
             <div class="col-lg-4">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="cart-detail">
+                        <div class="cart-detail" style="width: 500px;">
                             <h2>Cart Total</h2>
                             <ul>
                                 <li>
-                                    <span>Subtotal</span> <span>$100.00</span>
-                                    <ul>
-                                        <li><span>1 x Product Name</span> <span>$99.00</span></li>
-                                        <li><span>1 x Product Name</span> <span>$78.00</span></li>
-                                    </ul>
+                                    <table>
+
+                                        <tr>
+                                            <td>Subtotal</td>
+                                            <td>@String.Format("{0:#,##0.##}đ", (decimal)ViewBag.TongTien)</td>
+                                        </tr>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.SoLuong x @item.TenSanPham</td>
+                                                <td>@String.Format("{0:#,##0.##}đ", (decimal)item.TongTien)</td>
+                                            </tr>
+
+                                        }
+                                        <tr>
+                                            <td>Shipping</td>
+                                            <td>0 đ</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Order Total</td>
+                                            <td>@String.Format("{0:#,##0.##}đ", (decimal)ViewBag.TongTien)</td>
+                                        </tr>
+                                    </table>
                                 </li>
-                                <li><span>Shipping</span> <span>$0.00</span></li>
-                                <li><span>Order Total</span> <span>$180.00</span></li>
+
                             </ul>
                         </div>
                     </div>
-
                     <div class="w-100"></div>
 
-                    <div class="col-md-12">
-                        <div class="cart-detail">
-                            <h2>Payment Method</h2>
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <div class="radio">
-                                        <label><input type="radio" name="optradio"> Direct Bank Tranfer</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <div class="radio">
-                                        <label><input type="radio" name="optradio"> Check Payment</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <div class="radio">
-                                        <label><input type="radio" name="optradio"> Paypal</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" value=""> I have read and accept the terms and conditions</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <p><a href="#" class="btn btn-primary">Place an order</a></p>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
 </div>
-
 

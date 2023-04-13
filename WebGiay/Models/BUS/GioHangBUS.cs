@@ -36,6 +36,37 @@ namespace WebGiay.Models.BUS
             }
         }
 
+        public static DonHang ThemDonHang(string tennguoinhan, string iduser, string sdt, string email, string diachi, int tongdonhang, string hinhthucthanhtoan)
+        {
+            using (var db = new ShopOnlineConnectionDB())
+            {
+                
+                DonHang donhang = new DonHang()
+                {
+                    NgayTao = DateTime.Now,
+                    IDKhachHang = iduser,
+                    TenNguoiNhan = tennguoinhan,
+                    Sdt = sdt,
+                    DiaChiNhan = diachi,
+                    EmailNguoiNhan = email,
+                    TongDonHang = tongdonhang,
+                    HinhThucThanhToan = hinhthucthanhtoan,
+                    TinhTrang = "Đang chờ duyệt",
+
+                };                
+                db.Insert(donhang);
+                return donhang;
+            }
+        }
+
+        public static void ThemChiTietDonHang(ChiTietDonHang ctdh)
+        {
+            using (var db = new ShopOnlineConnectionDB())
+            {
+                db.Insert(ctdh);
+            }
+        }
+
         public static IEnumerable<GioHang> DanhSach(string mataikhoan)
         {
             using (var db = new ShopOnlineConnectionDB())

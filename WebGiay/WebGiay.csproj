@@ -168,7 +168,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Code\Product.cs" />
+    <Content Include="App_Code\Chitiethang.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -3351,6 +3351,8 @@
     <Content Include="Views\Shared\_Top4New.cshtml" />
     <Content Include="Views\GioHang\Index.cshtml" />
     <Content Include="Views\GioHang\CheckOut.cshtml" />
+    <Content Include="Views\GioHang\OderComplete.cshtml" />
+    <Content Include="Views\Shared\_Top4ThinhHanh.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

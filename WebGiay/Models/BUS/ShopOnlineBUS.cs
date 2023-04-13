@@ -22,13 +22,19 @@ namespace WebGiay.Models.BUS
         public static IEnumerable<SanPham> Top4New()
         {
             var db = new ShopOnlineConnectionDB();
-            return db.Query<SanPham>("Select Top 4 * from SanPham where lower(GhiChu) like '%new%' and LuotView < 1000 and TinhTrang = 0");
+            return db.Query<SanPham>("Select Top 4 * from SanPham where lower(GhiChu) like N'%new%' and LuotView < 1000 and TinhTrang = 0");
+        }
+
+        public static IEnumerable<SanPham> Top4ThinhHanh()
+        {
+            var db = new ShopOnlineConnectionDB();
+            return db.Query<SanPham>("Select Top 4 * from SanPham where TinhTrang = 0 and LuotView > 500 and SoLuongDaBan > 500");
         }
 
         public static IEnumerable<SanPham> BestSeller()
         {
             var db = new ShopOnlineConnectionDB();
-            return db.Query<SanPham>("Select Top 8 * from SanPham where LuotView > 0 and TinhTrang = 0");
+            return db.Query<SanPham>("Select Top 8 * from SanPham where TinhTrang = 0 and SoLuongDaBan > 500");
         }
 
         //--------Lấy thêm Tên NSX để load phần detail--------
@@ -67,6 +73,14 @@ namespace WebGiay.Models.BUS
         {
             var db = new ShopOnlineConnectionDB();
             return db.Query<SanPham>("select * from SanPham where Lower(TenSanPham) like '%" + srt + "%'");
+        }
+
+        //---sử dụng trong CheckOut -------
+        public static SanPham LayThongTinMaSanPham(string tensp)
+        {
+            var db = new ShopOnlineConnectionDB();
+            var sql = "select * from SanPham where TenSanPham = @0";
+            return db.SingleOrDefault<SanPham>(sql, tensp);
         }
     }
 }

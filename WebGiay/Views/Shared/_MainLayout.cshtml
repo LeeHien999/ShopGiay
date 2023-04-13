@@ -67,12 +67,19 @@
                                         <li>
                                             @Html.Partial("_LoginPartial")
                                         </li>
-                                        @if (User.IsInRole("Admin"))
+                                    @if(User.Identity.IsAuthenticated)
+                                    {
+                                        if (User.IsInRole("Admin"))
                                         {
                                             <li>
                                                 <a href="@Url.Action("Index", "MainAdmin", new { area = "Admin" })">Admin SB</a>
                                             </li>
                                         }
+                                        <li>
+                                            <a href="#">My orders</a>
+                                        </li>
+                                    }
+                                        
                                     </ul>
                                 </li>
                                 @{

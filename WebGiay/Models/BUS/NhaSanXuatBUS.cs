@@ -53,5 +53,11 @@ namespace WebGiay.Models.BUS
             var db = new ShopOnlineConnectionDB();
             return db.SingleOrDefault<NhaSanXuat>("Select * from NhaSanXuat where MaNhaSanXuat = " + id + "");
         }
+
+        public static SanPham LayThongTinMaSanPham(string tensp)
+        {
+            var db = new ShopOnlineConnectionDB();
+            return db.SingleOrDefault<SanPham>("Select * from SanPham where TenSanPham = '" + "'");
+        }
     }
 }

@@ -175,6 +175,35 @@ namespace ShopOnlineConnection
 		[Column] public string UserName { get; set; }
 	}
     
+	[TableName("dbo.ChiTietDonHang")]
+	[PrimaryKey("IdChiTietDonHang")]
+	[ExplicitColumns]
+    public partial class ChiTietDonHang : ShopOnlineConnectionDB.Record<ChiTietDonHang>  
+    {
+		[Column] public int IdChiTietDonHang { get; set; }
+		[Column] public int IdDonHang { get; set; }
+		[Column] public int IdSanPham { get; set; }
+		[Column] public int? SoLuong { get; set; }
+		[Column] public int? Gia { get; set; }
+	}
+    
+	[TableName("dbo.DonHang")]
+	[PrimaryKey("ID")]
+	[ExplicitColumns]
+    public partial class DonHang : ShopOnlineConnectionDB.Record<DonHang>  
+    {
+		[Column] public int ID { get; set; }
+		[Column] public DateTime? NgayTao { get; set; }
+		[Column] public string IDKhachHang { get; set; }
+		[Column] public string TenNguoiNhan { get; set; }
+		[Column] public string Sdt { get; set; }
+		[Column] public string DiaChiNhan { get; set; }
+		[Column] public string EmailNguoiNhan { get; set; }
+		[Column] public int? TongDonHang { get; set; }
+		[Column] public string HinhThucThanhToan { get; set; }
+		[Column] public string TinhTrang { get; set; }
+	}
+    
 	[TableName("dbo.GioHang")]
 	[PrimaryKey("IDGioHang")]
 	[ExplicitColumns]
