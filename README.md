@@ -2,6 +2,7 @@
 Project with Asp.net
 
 #Hướng dẫn chạy project trên máy
+
 #B1: Tạo lại database dựa vào file script trong thư mục DB với tên là WebBanGiay.
 
 #B2: Vào project chọn SEVER EXPLORER -> DATA CONNECTIONS -> ADD CONNECTION -> MICROSOFT SQL SERVER -> Nhập SERVER NAME -> SELECT OR ENTER A DATABASE NAME -> WebBanGiay -> OK.
