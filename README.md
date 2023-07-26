@@ -18,4 +18,4 @@ Project with Asp.net
 #B5: Chạy và xem project.
 
 #Lưu ý: Do project này được xây dựng từ microsoft visual code 2017 nên khi chạy trên các phiên bản cao hơn có thể báo yêu cầu cập nhật nên cứ bấm ok vào cái nào recommend sau đó khởi động lại project.
-
+- Nếu xuất hiện lỗi Erro... ở Database.cs thì vào lại git chọn file Database.cs cop và pate lại vào.
